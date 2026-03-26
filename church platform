@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DMATHS Church Platform — Architecture & UI Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1F3A;
+    --navy-mid: #12294F;
+    --blue: #1A4480;
+    --sky: #3A7BD5;
+    --gold: #C8A84B;
+    --gold-light: #E8C96A;
+    --gold-pale: #FBF3DC;
+    --white: #FFFFFF;
+    --off-white: #F7F8FC;
+    --gray-100: #EEF1F7;
+    --gray-300: #B8C4D8;
+    --gray-500: #7A8BAA;
+    --gray-700: #3D4F6B;
+    --success: #22C55E;
+    --danger: #EF4444;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: var(--font-body);
+    background: var(--off-white);
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+
+  /* ═══════════════════════════════════════════════
+     NAVIGATION — TABS
+  ═══════════════════════════════════════════════ */
+  .tab-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .tab-nav .brand {
+    font-family: var(--font-heading);
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 2px;
+    padding: 16px 0;
+    margin-right: 32px;
+    white-space: nowrap;
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    color: var(--gray-300);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 18px 20px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+  }
+  .tab-btn:hover { color: var(--white); }
+  .tab-btn.active {
+    color: var(--gold-light);
+    border-bottom-color: var(--gold);
+    background: rgba(200,168,75,0.07);
+  }
+
+  .tab-panel { display: none; animation: fadeIn 0.35s ease; }
+  .tab-panel.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ═══════════════════════════════════════════════
+     SECTION LABELS
+  ═══════════════════════════════════════════════ */
+  .section-label {
+    text-align: center;
+    padding: 40px 24px 16px;
+  }
+  .section-label .eyebrow {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .section-label h2 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--navy);
+  }
+  .section-label p {
+    color: var(--gray-500);
+    font-size: 14px;
+    margin-top: 6px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ═══════════════════════════════════════════════
+     TAB 1 — ARCHITECTURE
+  ═══════════════════════════════════════════════ */
+  .arch-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 48px;
+  }
+  @media(max-width:760px){ .arch-grid { grid-template-columns: 1fr; } }
+
+  .arch-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid var(--gray-100);
+    box-shadow: 0 2px 12px rgba(11,31,58,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .arch-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--sky));
+  }
+
+  .arch-card .card-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  .arch-card h3 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .arch-card .tech-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--gray-100);
+    color: var(--navy-mid);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin: 3px;
+    letter-spacing: 0.3px;
+  }
+  .arch-card .tech-pill.gold { background: var(--gold-pale); color: #8B6914; }
+  .arch-card .tech-pill.blue { background: #E0EAFB; color: var(--blue); }
+  .arch-card p { font-size: 13px; color: var(--gray-500); line-height: 1.7; margin-bottom: 14px; }
+
+  .flow-diagram {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 32px;
+    grid-column: 1 / -1;
+    color: var(--white);
+  }
+  .flow-diagram h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--gold-light);
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .flow-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .flow-box {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(200,168,75,0.3);
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--white);
+    min-width: 110px;
+  }
+  .flow-box.highlight {
+    background: rgba(200,168,75,0.15);
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+  .flow-arrow {
+    color: var(--gold);
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  /* ═══════════════════════════════════════════════
+     TAB 2 — HOMEPAGE UI
+  ═══════════════════════════════════════════════ */
+  .browser-chrome {
+    background: #1A1E2A;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 1000px;
+    margin: 0 auto 32px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  }
+  .browser-bar {
+    background: #252B3B;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .browser-dots { display: flex; gap: 6px; }
+  .browser-dots span { width: 10px; height: 10px; border-radius: 50%; }
+  .browser-dots span:nth-child(1) { background: #FF5F57; }
+  .browser-dots span:nth-child(2) { background: #FFBD2E; }
+  .browser-dots span:nth-child(3) { background: #28C840; }
+  .browser-url {
+    flex: 1;
+    background: #1A1E2A;
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 11px;
+    color: var(--gray-300);
+    font-family: monospace;
+  }
+
+  /* HOMEPAGE MOCK */
+  .site-nav-mock {
+    background: rgba(11,31,58,0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 28px;
+    position: relative;
+    z-index: 10;
+  }
+  .site-logo { font-family: var(--font-heading); font-size: 15px; color: var(--gold); letter-spacing: 2px; }
+  .site-nav-links { display: flex; gap: 20px; }
+  .site-nav-links a { font-size: 12px; color: var(--gray-300); text-decoration: none; font-weight: 500; }
+  .site-nav-links a.active { color: var(--gold-light); }
+  .donate-btn {
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 7px 16px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-mock {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a3a6b 50%, #0d2440 100%);
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 28px;
+  }
+  .hero-mock::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(200,168,75,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(58,123,213,0.15) 0%, transparent 50%);
+  }
+  .hero-cross {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.07;
+    font-size: 180px;
+    color: var(--white);
+    pointer-events: none;
+    line-height: 1;
+  }
+  .hero-content { position: relative; z-index: 2; text-align: center; }
+  .hero-eyebrow {
+    font-family: var(--font-heading);
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 36px;
+    color: var(--white);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .hero-title em { color: var(--gold-light); font-style: normal; }
+  .hero-sub { font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 24px; max-width: 400px; line-height: 1.7; }
+  .hero-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 10px 22px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.3);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 9px 22px;
+    border-radius: 4px;
+  }
+  .btn-live {
+    background: #EF4444;
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .live-dot { width: 7px; height: 7px; background: white; border-radius: 50%; animation: pulse 1.2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .section-strip {
+    background: var(--white);
+    padding: 20px 28px;
+  }
+  .strip-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+  .strip-title span { color: var(--gold); }
+
+  .sermon-cards-row { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; }
+  .sermon-card-mock {
+    background: var(--off-white);
+    border-radius: 10px;
+    overflow: hidden;
+    min-width: 170px;
+    flex-shrink: 0;
+    border: 1px solid var(--gray-100);
+  }
+  .sermon-thumb {
+    background: linear-gradient(135deg, #1A4480, #0B1F3A);
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .play-icon {
+    width: 32px; height: 32px;
+    background: rgba(200,168,75,0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--navy);
+    font-weight: bold;
+  }
+  .sermon-badge {
+    position: absolute;
+    top: 8px; right: 8px;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+  }
+  .sermon-info { padding: 10px 12px; }
+  .sermon-title-mock { font-size: 11px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+  .sermon-meta-mock { font-size: 10px; color: var(--gray-500); }
+
+  .events-row { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; }
+  .event-card-mock {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 16px;
+    min-width: 160px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .event-card-mock::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 3px; height: 100%;
+    background: var(--gold);
+  }
+  .event-date { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--gold); line-height: 1; }
+  .event-month { font-size: 10px; color: var(--gray-300); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .event-name { font-size: 12px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+  .event-time { font-size: 10px; color: var(--gray-500); }
+
+  /* ═══════════════════════════════════════════════
+     TAB 3 — ADMIN DASHBOARD
+  ═══════════════════════════════════════════════ */
+  .dashboard-wrapper {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    height: 560px;
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 1000px;
+    margin: 0 auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+  @media(max-width:700px){ .dashboard-wrapper { grid-template-columns: 1fr; height: auto; } }
+
+  .dash-sidebar {
+    background: var(--navy);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .dash-logo {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    font-family: var(--font-heading);
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+  .dash-logo small { display: block; font-size: 9px; color: var(--gray-500); letter-spacing: 1px; margin-top: 2px; }
+
+  .dash-menu { padding: 16px 0; flex: 1; overflow-y: auto; }
+  .dash-section { font-size: 9px; color: var(--gray-500); letter-spacing: 2px; padding: 8px 20px 4px; text-transform: uppercase; }
+  .dash-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 20px;
+    font-size: 12px;
+    color: var(--gray-300);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .dash-link:hover { background: rgba(255,255,255,0.05); color: var(--white); }
+  .dash-link.active {
+    background: rgba(200,168,75,0.12);
+    color: var(--gold-light);
+    border-right: 3px solid var(--gold);
+  }
+  .dash-link .icon { font-size: 14px; width: 18px; text-align: center; }
+  .dash-link .badge {
+    margin-left: auto;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 9px;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 10px;
+  }
+
+  .dash-main {
+    background: var(--off-white);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .dash-topbar {
+    background: var(--white);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .topbar-left h2 { font-size: 15px; font-weight: 600; color: var(--navy); }
+  .topbar-left p { font-size: 11px; color: var(--gray-500); margin-top: 1px; }
+  .topbar-right { display: flex; align-items: center; gap: 12px; }
+  .topbar-btn {
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 7px 14px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sky), var(--navy));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .dash-content {
+    padding: 20px 24px;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  @media(max-width:600px){ .stats-row { grid-template-columns: 1fr 1fr; } }
+
+  .stat-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 16px;
+    border: 1px solid var(--gray-100);
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::after {
+    content: attr(data-icon);
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 22px;
+    opacity: 0.15;
+  }
+  .stat-label { font-size: 10px; color: var(--gray-500); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .stat-value { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--navy); }
+  .stat-change { font-size: 10px; margin-top: 3px; }
+  .stat-change.up { color: var(--success); }
+  .stat-change.down { color: var(--danger); }
+
+  .dash-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media(max-width:600px){ .dash-two-col { grid-template-columns: 1fr; } }
+
+  .dash-widget {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 16px;
+    border: 1px solid var(--gray-100);
+  }
+  .widget-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .widget-title { font-size: 13px; font-weight: 600; color: var(--navy); }
+  .widget-action { font-size: 11px; color: var(--sky); cursor: pointer; }
+
+  .sermon-row-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .sermon-row-item:last-child { border-bottom: none; }
+  .sermon-thumb-mini {
+    width: 40px; height: 30px;
+    background: linear-gradient(135deg, var(--sky), var(--navy));
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: white;
+    flex-shrink: 0;
+  }
+  .sermon-row-info { flex: 1; overflow: hidden; }
+  .sermon-row-title { font-size: 11px; font-weight: 600; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sermon-row-meta { font-size: 10px; color: var(--gray-500); }
+  .sermon-row-views { font-size: 10px; color: var(--gray-500); white-space: nowrap; }
+
+  /* Chart bars */
+  .chart-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 80px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--gray-100);
+    margin-bottom: 8px;
+  }
+  .bar-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .bar {
+    width: 100%;
+    border-radius: 3px 3px 0 0;
+    background: linear-gradient(180deg, var(--sky), var(--blue));
+    transition: height 0.3s;
+    cursor: pointer;
+    position: relative;
+  }
+  .bar.gold-bar { background: linear-gradient(180deg, var(--gold-light), var(--gold)); }
+  .bar:hover::after {
+    content: attr(data-val);
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--navy);
+    color: white;
+    font-size: 9px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .bar-label { font-size: 9px; color: var(--gray-500); }
+
+  /* Donation item */
+  .donation-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-100);
+    font-size: 11px;
+  }
+  .donation-item:last-child { border-bottom: none; }
+  .donation-left { display: flex; align-items: center; gap: 8px; }
+  .donor-avatar {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+  }
+  .donation-amount { font-weight: 700; color: var(--success); }
+  .donation-name { color: var(--navy); font-weight: 500; }
+  .donation-time { font-size: 10px; color: var(--gray-500); }
+
+  /* ═══════════════════════════════════════════════
+     TAB 4 — FOLDER STRUCTURE
+  ═══════════════════════════════════════════════ */
+  .folder-tree {
+    background: #0D1117;
+    border-radius: 12px;
+    padding: 28px 32px;
+    max-width: 800px;
+    margin: 0 auto 32px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.9;
+    color: #C9D1D9;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .ft-dir { color: #79C0FF; font-weight: bold; }
+  .ft-file { color: #C9D1D9; }
+  .ft-comment { color: #6A737D; }
+  .ft-special { color: #FFA657; }
+  .ft-green { color: #56D364; }
+
+  .install-block {
+    background: #0D1117;
+    border-radius: 12px;
+    padding: 24px 28px;
+    max-width: 800px;
+    margin: 0 auto 24px;
+    font-family: 'Courier New', monospace;
+    font-size: 12.5px;
+    color: #C9D1D9;
+    line-height: 1.8;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    position: relative;
+  }
+  .install-block .step-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #56D364;
+    margin-bottom: 12px;
+    display: block;
+    text-transform: uppercase;
+  }
+  .install-block .cmd { color: #79C0FF; }
+  .install-block .comment { color: #6A737D; }
+  .install-block .highlight-cmd { color: #FFA657; }
+
+  .phase-roadmap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 48px;
+  }
+  @media(max-width:700px){ .phase-roadmap { grid-template-columns: 1fr; } }
+  .phase-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--gray-100);
+    position: relative;
+  }
+  .phase-num {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--gray-100);
+    line-height: 1;
+    position: absolute;
+    top: 12px;
+    right: 16px;
+  }
+  .phase-tag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: var(--gold-pale);
+    color: #8B6914;
+    padding: 3px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .phase-card h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+  .phase-card ul { list-style: none; }
+  .phase-card ul li {
+    font-size: 12px;
+    color: var(--gray-500);
+    padding: 3px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .phase-card ul li::before { content: '→'; color: var(--sky); flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="tab-nav">
+  <div class="brand">⛪ DMATHS</div>
+  <button class="tab-btn active" onclick="showTab('arch', this)">📐 Architecture</button>
+  <button class="tab-btn" onclick="showTab('homepage', this)">🌐 Homepage UI</button>
+  <button class="tab-btn" onclick="showTab('dashboard', this)">⚙️ Admin Dashboard</button>
+  <button class="tab-btn" onclick="showTab('setup', this)">📁 Project Setup</button>
+</nav>
+
+<!-- ══════════ TAB 1: ARCHITECTURE ══════════ -->
+<div id="tab-arch" class="tab-panel active">
+  <div class="section-label">
+    <span class="eyebrow">Phase 1 — Foundation</span>
+    <h2>System Architecture</h2>
+    <p>Full-stack SaaS design for a scalable Church Digital Platform</p>
+  </div>
+
+  <div class="arch-grid">
+    <!-- Frontend -->
+    <div class="arch-card">
+      <div class="card-icon" style="background:#E0EAFB">🖥️</div>
+      <h3>Frontend Layer</h3>
+      <p>The user-facing web application built for speed, SEO, and modern UX. Serves both the public church site and the admin dashboard.</p>
+      <span class="tech-pill blue">Next.js 14 App Router</span>
+      <span class="tech-pill blue">Tailwind CSS</span>
+      <span class="tech-pill blue">ShadCN UI</span>
+      <span class="tech-pill blue">React Query</span>
+      <span class="tech-pill blue">Framer Motion</span>
+    </div>
+
+    <!-- Backend -->
+    <div class="arch-card">
+      <div class="card-icon" style="background:#E0F5EC">⚙️</div>
+      <h3>Backend Layer</h3>
+      <p>API routes built inside Next.js App Router (or optional Express for heavy workloads). Handles auth, data, uploads, and payment logic.</p>
+      <span class="tech-pill">Next.js API Routes</span>
+      <span class="tech-pill">Node.js</span>
+      <span class="tech-pill">Prisma ORM</span>
+      <span class="tech-pill">JWT / NextAuth</span>
+      <span class="tech-pill">Zod Validation</span>
+    </div>
+
+    <!-- Database -->
+    <div class="arch-card">
+      <div class="card-icon" style="background:#FBF3DC">🗄️</div>
+      <h3>Database Layer</h3>
+      <p>PostgreSQL stores all relational data — churches, users, sermons, events, donations. Prisma provides type-safe ORM access.</p>
+      <span class="tech-pill gold">PostgreSQL</span>
+      <span class="tech-pill gold">Prisma ORM</span>
+      <span class="tech-pill gold">Neon DB (cloud)</span>
+    </div>
+
+    <!-- Media -->
+    <div class="arch-card">
+      <div class="card-icon" style="background:#F3E0FB">☁️</div>
+      <h3>Media & Storage</h3>
+      <p>Cloudinary handles all sermon video/audio uploads, thumbnail generation, and streaming delivery via CDN with automatic optimization.</p>
+      <span class="tech-pill">Cloudinary CDN</span>
+      <span class="tech-pill">Video Upload API</span>
+      <span class="tech-pill">Audio Streams</span>
+      <span class="tech-pill">Auto-thumbnails</span>
+    </div>
+
+    <!-- Flow Diagram -->
+    <div class="flow-diagram">
+      <h3>🔗 How All Layers Connect</h3>
+      <div class="flow-row">
+        <div class="flow-box highlight">👤 Church Member<br><small>Public Site</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">Next.js<br><small>App Router</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">API Routes<br><small>/api/*</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">Prisma ORM<br><small>Type-safe</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box highlight">PostgreSQL<br><small>Neon DB</small></div>
+      </div>
+      <div class="flow-row">
+        <div class="flow-box highlight">👨‍💼 Admin<br><small>Dashboard</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">JWT Auth<br><small>NextAuth</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">Protected<br><small>API Routes</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">Cloudinary<br><small>Upload</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box highlight">Media CDN<br><small>Streaming</small></div>
+      </div>
+      <div class="flow-row">
+        <div class="flow-box highlight">💰 Donor<br><small>Checkout</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">Paystack /<br><small>Flutterwave</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">Webhook<br><small>Handler</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">DB Record<br><small>Donations</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box highlight">Analytics<br><small>Dashboard</small></div>
+      </div>
+    </div>
+
+    <!-- Multi-tenant -->
+    <div class="arch-card" style="grid-column:1/-1">
+      <div class="card-icon" style="background:#E0EAFB">🏛️</div>
+      <h3>Multi-Tenant SaaS Architecture</h3>
+      <p>Each church gets its own isolated data scope, subdomain, and branding. The <strong>tenantId</strong> field on every DB record ensures complete data separation. Phase 6 expands this into a full white-label SaaS.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+        <div style="background:var(--gray-100);border-radius:8px;padding:12px 16px;flex:1;min-width:160px">
+          <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:4px">🏠 Tenant A — Grace Chapel</div>
+          <div style="font-size:11px;color:var(--gray-500)">gracechapel.dmaths.com</div>
+          <div style="font-size:10px;color:var(--sky);margin-top:4px">Own brand · Own data · Own admin</div>
+        </div>
+        <div style="background:var(--gray-100);border-radius:8px;padding:12px 16px;flex:1;min-width:160px">
+          <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:4px">⛪ Tenant B — Victory Church</div>
+          <div style="font-size:11px;color:var(--gray-500)">victory.dmaths.com</div>
+          <div style="font-size:10px;color:var(--sky);margin-top:4px">Own brand · Own data · Own admin</div>
+        </div>
+        <div style="background:var(--gold-pale);border-radius:8px;padding:12px 16px;flex:1;min-width:160px;border:1px solid rgba(200,168,75,0.3)">
+          <div style="font-size:11px;font-weight:700;color:#8B6914;margin-bottom:4px">👑 Super Admin — DMATHS</div>
+          <div style="font-size:11px;color:#8B6914">admin.dmaths.com</div>
+          <div style="font-size:10px;color:var(--gold);margin-top:4px">Manages all tenants · Billing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ TAB 2: HOMEPAGE UI ══════════ -->
+<div id="tab-homepage" class="tab-panel">
+  <div class="section-label">
+    <span class="eyebrow">Public Website</span>
+    <h2>Homepage UI Layout</h2>
+    <p>Church-themed, modern, and conversion-optimized</p>
+  </div>
+
+  <div style="padding: 0 24px 48px; max-width: 1050px; margin: 0 auto">
+    <div class="browser-chrome">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">https://gracechapel.dmaths.com</div>
+      </div>
+
+      <!-- SITE NAVIGATION -->
+      <div class="site-nav-mock">
+        <div class="site-logo">✝ GRACE CHAPEL</div>
+        <div class="site-nav-links">
+          <a href="#" class="active">Home</a>
+          <a href="#">Sermons</a>
+          <a href="#">Events</a>
+          <a href="#">Live</a>
+          <a href="#">About</a>
+        </div>
+        <div class="donate-btn">💛 Give</div>
+      </div>
+
+      <!-- HERO SECTION -->
+      <div class="hero-mock">
+        <div class="hero-cross">✝</div>
+        <div class="hero-content">
+          <span class="hero-eyebrow">Sunday Service · 10:00 AM</span>
+          <div class="hero-title">Worship. Grow.<br><em>Transform.</em></div>
+          <p class="hero-sub">Join thousands of believers experiencing God's presence every Sunday. Online and in-person.</p>
+          <div class="hero-buttons">
+            <div class="btn-primary">📖 Watch Sermons</div>
+            <div class="btn-outline">Learn More</div>
+            <div class="btn-live"><span class="live-dot"></span>Watch Live</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERMONS SECTION -->
+      <div class="section-strip">
+        <div class="strip-title">Recent <span>Messages</span></div>
+        <div class="sermon-cards-row">
+          <div class="sermon-card-mock">
+            <div class="sermon-thumb">
+              <div class="play-icon">▶</div>
+              <div class="sermon-badge">NEW</div>
+            </div>
+            <div class="sermon-info">
+              <div class="sermon-title-mock">Walking in Faith</div>
+              <div class="sermon-meta-mock">Pastor James · Dec 22</div>
+            </div>
+          </div>
+          <div class="sermon-card-mock">
+            <div class="sermon-thumb" style="background:linear-gradient(135deg,#2C5282,#1A3A5C)">
+              <div class="play-icon">▶</div>
+            </div>
+            <div class="sermon-info">
+              <div class="sermon-title-mock">The Power of Prayer</div>
+              <div class="sermon-meta-mock">Pastor James · Dec 15</div>
+            </div>
+          </div>
+          <div class="sermon-card-mock">
+            <div class="sermon-thumb" style="background:linear-gradient(135deg,#4A235A,#1A1040)">
+              <div class="play-icon">▶</div>
+            </div>
+            <div class="sermon-info">
+              <div class="sermon-title-mock">Grace Abounding</div>
+              <div class="sermon-meta-mock">Min. Sarah · Dec 8</div>
+            </div>
+          </div>
+          <div class="sermon-card-mock">
+            <div class="sermon-thumb" style="background:linear-gradient(135deg,#1A4435,#0A2818)">
+              <div class="play-icon">▶</div>
+            </div>
+            <div class="sermon-info">
+              <div class="sermon-title-mock">God's Promise</div>
+              <div class="sermon-meta-mock">Pastor James · Dec 1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EVENTS SECTION -->
+      <div class="section-strip" style="background:var(--off-white)">
+        <div class="strip-title">Upcoming <span>Events</span></div>
+        <div class="events-row">
+          <div class="event-card-mock">
+            <div class="event-date">12</div>
+            <div class="event-month">JAN</div>
+            <div class="event-name">New Year Prayer Night</div>
+            <div class="event-time">🕖 6:00 PM — 9:00 PM</div>
+          </div>
+          <div class="event-card-mock">
+            <div class="event-date">19</div>
+            <div class="event-month">JAN</div>
+            <div class="event-name">Youth Conference 2026</div>
+            <div class="event-time">🕗 7:00 AM — 5:00 PM</div>
+          </div>
+          <div class="event-card-mock">
+            <div class="event-date">26</div>
+            <div class="event-month">JAN</div>
+            <div class="event-name">Marriage Seminar</div>
+            <div class="event-time">🕙 10:00 AM — 2:00 PM</div>
+          </div>
+          <div class="event-card-mock" style="border-left-color: var(--sky)">
+            <div class="event-date" style="color:var(--sky)">02</div>
+            <div class="event-month">FEB</div>
+            <div class="event-name">Communion Service</div>
+            <div class="event-time">🕗 7:30 AM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DONATION STRIP -->
+      <div class="section-strip" style="background:var(--navy);padding:20px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+        <div>
+          <div style="font-family:var(--font-display);font-size:16px;color:var(--white)">Support the Ministry 💛</div>
+          <div style="font-size:12px;color:var(--gray-300);margin-top:4px">Your giving makes a difference in lives around the world.</div>
+        </div>
+        <div style="display:flex;gap:10px">
+          <div class="btn-primary" style="font-size:12px;padding:10px 20px">Give Now</div>
+          <div class="btn-outline" style="font-size:12px">Learn More</div>
+        </div>
+      </div>
+
+    </div><!-- end browser chrome -->
+
+    <!-- UI COMPONENT BREAKDOWN -->
+    <div style="background:var(--white);border-radius:12px;padding:24px;border:1px solid var(--gray-100)">
+      <div style="font-family:var(--font-display);font-size:18px;color:var(--navy);margin-bottom:16px">📋 Homepage Component Map</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+        <div style="background:var(--off-white);border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:var(--sky);margin-bottom:4px">NAVBAR</div>
+          <div style="font-size:11px;color:var(--gray-500)">Logo · Nav links · Donate CTA</div>
+        </div>
+        <div style="background:var(--off-white);border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:var(--sky);margin-bottom:4px">HERO</div>
+          <div style="font-size:11px;color:var(--gray-500)">Title · Sub · 3 CTAs · Background gradient</div>
+        </div>
+        <div style="background:var(--off-white);border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:var(--sky);margin-bottom:4px">SERMON CARDS</div>
+          <div style="font-size:11px;color:var(--gray-500)">Thumbnail · Title · Speaker · Date · Play</div>
+        </div>
+        <div style="background:var(--off-white);border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:var(--sky);margin-bottom:4px">EVENTS</div>
+          <div style="font-size:11px;color:var(--gray-500)">Date card · Name · Time · Register btn</div>
+        </div>
+        <div style="background:var(--off-white);border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:var(--sky);margin-bottom:4px">DONATION</div>
+          <div style="font-size:11px;color:var(--gray-500)">CTA banner · Paystack/Flutterwave modal</div>
+        </div>
+        <div style="background:var(--off-white);border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:var(--sky);margin-bottom:4px">FOOTER</div>
+          <div style="font-size:11px;color:var(--gray-500)">Links · Social · Address · Copyright</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ TAB 3: DASHBOARD ══════════ -->
+<div id="tab-dashboard" class="tab-panel">
+  <div class="section-label">
+    <span class="eyebrow">Admin Panel</span>
+    <h2>Dashboard UI</h2>
+    <p>Full church management interface for non-technical admins</p>
+  </div>
+
+  <div style="padding: 0 24px 48px; max-width: 1050px; margin: 0 auto">
+    <div class="browser-chrome">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">https://gracechapel.dmaths.com/admin</div>
+      </div>
+
+      <div class="dashboard-wrapper">
+        <!-- SIDEBAR -->
+        <div class="dash-sidebar">
+          <div class="dash-logo">
+            ✝ DMATHS
+            <small>Grace Chapel Admin</small>
+          </div>
+          <div class="dash-menu">
+            <div class="dash-section">Main</div>
+            <div class="dash-link active"><span class="icon">📊</span> Dashboard</div>
+            <div class="dash-link"><span class="icon">🎙️</span> Sermons <span class="badge">12</span></div>
+            <div class="dash-link"><span class="icon">📅</span> Events</div>
+            <div class="dash-link"><span class="icon">📡</span> Live Stream</div>
+            <div class="dash-section">Finance</div>
+            <div class="dash-link"><span class="icon">💰</span> Donations</div>
+            <div class="dash-link"><span class="icon">📈</span> Reports</div>
+            <div class="dash-section">Settings</div>
+            <div class="dash-link"><span class="icon">👥</span> Users</div>
+            <div class="dash-link"><span class="icon">🎨</span> Branding</div>
+            <div class="dash-link"><span class="icon">⚙️</span> Settings</div>
+          </div>
+          <div style="padding:16px;border-top:1px solid rgba(255,255,255,0.07)">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div class="avatar" style="width:28px;height:28px;font-size:11px">PA</div>
+              <div>
+                <div style="font-size:11px;color:var(--white);font-weight:600">Pastor Ade</div>
+                <div style="font-size:9px;color:var(--gray-500)">Super Admin</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="dash-main">
+          <div class="dash-topbar">
+            <div class="topbar-left">
+              <h2>Good Morning, Pastor 🙏</h2>
+              <p>Thursday, March 26 · Grace Chapel</p>
+            </div>
+            <div class="topbar-right">
+              <div class="topbar-btn">+ Upload Sermon</div>
+              <div class="avatar">PA</div>
+            </div>
+          </div>
+
+          <div class="dash-content">
+            <!-- STATS -->
+            <div class="stats-row">
+              <div class="stat-card" data-icon="🎙️">
+                <div class="stat-label">Total Sermons</div>
+                <div class="stat-value">147</div>
+                <div class="stat-change up">↑ +3 this week</div>
+              </div>
+              <div class="stat-card" data-icon="👁️">
+                <div class="stat-label">Total Views</div>
+                <div class="stat-value">24.8K</div>
+                <div class="stat-change up">↑ +12% this month</div>
+              </div>
+              <div class="stat-card" data-icon="💰">
+                <div class="stat-label">Donations</div>
+                <div class="stat-value">₦1.2M</div>
+                <div class="stat-change up">↑ +8% this month</div>
+              </div>
+              <div class="stat-card" data-icon="📅">
+                <div class="stat-label">Upcoming Events</div>
+                <div class="stat-value">5</div>
+                <div class="stat-change" style="color:var(--gray-500)">Next: Jan 12</div>
+              </div>
+            </div>
+
+            <!-- TWO COLUMNS -->
+            <div class="dash-two-col">
+              <!-- Sermons Widget -->
+              <div class="dash-widget">
+                <div class="widget-header">
+                  <div class="widget-title">Recent Sermons</div>
+                  <div class="widget-action">View all →</div>
+                </div>
+                <div class="sermon-row-item">
+                  <div class="sermon-thumb-mini">▶</div>
+                  <div class="sermon-row-info">
+                    <div class="sermon-row-title">Walking in Faith — Pt. 3</div>
+                    <div class="sermon-row-meta">Dec 22 · Video + Audio</div>
+                  </div>
+                  <div class="sermon-row-views">1.2K views</div>
+                </div>
+                <div class="sermon-row-item">
+                  <div class="sermon-thumb-mini" style="background:linear-gradient(135deg,#5B2182,#2D0C50)">▶</div>
+                  <div class="sermon-row-info">
+                    <div class="sermon-row-title">The Power of Prayer</div>
+                    <div class="sermon-row-meta">Dec 15 · Video</div>
+                  </div>
+                  <div class="sermon-row-views">876 views</div>
+                </div>
+                <div class="sermon-row-item">
+                  <div class="sermon-thumb-mini" style="background:linear-gradient(135deg,#1E6B45,#0A3020)">▶</div>
+                  <div class="sermon-row-info">
+                    <div class="sermon-row-title">Grace Abounding</div>
+                    <div class="sermon-row-meta">Dec 8 · Audio only</div>
+                  </div>
+                  <div class="sermon-row-views">542 views</div>
+                </div>
+              </div>
+
+              <!-- Chart Widget -->
+              <div class="dash-widget">
+                <div class="widget-header">
+                  <div class="widget-title">Views This Week</div>
+                  <div class="widget-action">This month ▾</div>
+                </div>
+                <div class="chart-bars">
+                  <div class="bar-group">
+                    <div class="bar" style="height:45px" data-val="320"></div>
+                    <div class="bar-label">Mon</div>
+                  </div>
+                  <div class="bar-group">
+                    <div class="bar" style="height:70px" data-val="510"></div>
+                    <div class="bar-label">Tue</div>
+                  </div>
+                  <div class="bar-group">
+                    <div class="bar" style="height:55px" data-val="390"></div>
+                    <div class="bar-label">Wed</div>
+                  </div>
+                  <div class="bar-group">
+                    <div class="bar gold-bar" style="height:80px" data-val="624"></div>
+                    <div class="bar-label">Thu</div>
+                  </div>
+                  <div class="bar-group">
+                    <div class="bar" style="height:62px" data-val="440"></div>
+                    <div class="bar-label">Fri</div>
+                  </div>
+                  <div class="bar-group">
+                    <div class="bar" style="height:76px" data-val="580"></div>
+                    <div class="bar-label">Sat</div>
+                  </div>
+                  <div class="bar-group">
+                    <div class="bar gold-bar" style="height:80px" data-val="720"></div>
+                    <div class="bar-label">Sun</div>
+                  </div>
+                </div>
+                <div style="font-size:11px;color:var(--gray-500);text-align:center">3,584 total views this week</div>
+              </div>
+
+              <!-- Donations Widget -->
+              <div class="dash-widget" style="grid-column:1/-1">
+                <div class="widget-header">
+                  <div class="widget-title">Recent Donations</div>
+                  <div class="widget-action">View all →</div>
+                </div>
+                <div class="donation-item">
+                  <div class="donation-left">
+                    <div class="donor-avatar" style="background:linear-gradient(135deg,#3A7BD5,#1A3A6B)">AO</div>
+                    <div>
+                      <div class="donation-name">Adaeze Okonkwo</div>
+                      <div class="donation-time">2 hours ago · Tithe</div>
+                    </div>
+                  </div>
+                  <div class="donation-amount">₦50,000</div>
+                </div>
+                <div class="donation-item">
+                  <div class="donation-left">
+                    <div class="donor-avatar" style="background:linear-gradient(135deg,#C8A84B,#8B6914)">BI</div>
+                    <div>
+                      <div class="donation-name">Babatunde Idowu</div>
+                      <div class="donation-time">5 hours ago · Offering</div>
+                    </div>
+                  </div>
+                  <div class="donation-amount">₦25,000</div>
+                </div>
+                <div class="donation-item">
+                  <div class="donation-left">
+                    <div class="donor-avatar" style="background:linear-gradient(135deg,#22C55E,#0F7A3A)">EN</div>
+                    <div>
+                      <div class="donation-name">Emeka Nwosu</div>
+                      <div class="donation-time">Yesterday · Seeds</div>
+                    </div>
+                  </div>
+                  <div class="donation-amount">₦100,000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ TAB 4: PROJECT SETUP ══════════ -->
+<div id="tab-setup" class="tab-panel">
+  <div class="section-label">
+    <span class="eyebrow">Phase 1 — Setup</span>
+    <h2>Folder Structure & Installation</h2>
+    <p>Production-ready project scaffold for the Church SaaS Platform</p>
+  </div>
+
+  <div style="max-width: 860px; margin: 0 auto; padding: 0 24px">
+    <!-- Folder Tree -->
+    <div class="folder-tree">
+<span class="ft-special">church-saas/                        </span><span class="ft-comment"># Root project</span>
+├── <span class="ft-dir">src/</span>
+│   ├── <span class="ft-dir">app/</span>                          <span class="ft-comment"># Next.js App Router</span>
+│   │   ├── <span class="ft-dir">(public)/</span>                 <span class="ft-comment"># Public-facing pages</span>
+│   │   │   ├── <span class="ft-file">page.tsx</span>              <span class="ft-comment"># Homepage</span>
+│   │   │   ├── <span class="ft-dir">sermons/</span>
+│   │   │   │   ├── <span class="ft-file">page.tsx</span>          <span class="ft-comment"># Sermon list</span>
+│   │   │   │   └── <span class="ft-dir">[id]/page.tsx</span>     <span class="ft-comment"># Sermon player</span>
+│   │   │   ├── <span class="ft-dir">events/page.tsx</span>
+│   │   │   ├── <span class="ft-dir">live/page.tsx</span>
+│   │   │   ├── <span class="ft-dir">about/page.tsx</span>
+│   │   │   └── <span class="ft-dir">give/page.tsx</span>
+│   │   ├── <span class="ft-dir">(admin)/</span>                  <span class="ft-comment"># Protected admin area</span>
+│   │   │   ├── <span class="ft-dir">dashboard/page.tsx</span>
+│   │   │   ├── <span class="ft-dir">sermons/</span>
+│   │   │   │   ├── <span class="ft-file">page.tsx</span>          <span class="ft-comment"># Manage sermons</span>
+│   │   │   │   └── <span class="ft-file">upload/page.tsx</span>   <span class="ft-comment"># Upload form</span>
+│   │   │   ├── <span class="ft-dir">events/page.tsx</span>
+│   │   │   ├── <span class="ft-dir">donations/page.tsx</span>
+│   │   │   ├── <span class="ft-dir">users/page.tsx</span>
+│   │   │   └── <span class="ft-dir">settings/page.tsx</span>
+│   │   ├── <span class="ft-dir">api/</span>                          <span class="ft-comment"># Backend API routes</span>
+│   │   │   ├── <span class="ft-dir">auth/[...nextauth]/route.ts</span>
+│   │   │   ├── <span class="ft-dir">sermons/route.ts</span>
+│   │   │   ├── <span class="ft-dir">events/route.ts</span>
+│   │   │   ├── <span class="ft-dir">donations/</span>
+│   │   │   │   ├── <span class="ft-file">route.ts</span>
+│   │   │   │   └── <span class="ft-file">webhook/route.ts</span>
+│   │   │   └── <span class="ft-dir">upload/route.ts</span>
+│   │   ├── <span class="ft-file">layout.tsx</span>
+│   │   └── <span class="ft-file">globals.css</span>
+│   ├── <span class="ft-dir">components/</span>
+│   │   ├── <span class="ft-dir">ui/</span>                          <span class="ft-comment"># ShadCN components</span>
+│   │   ├── <span class="ft-dir">public/</span>                       <span class="ft-comment"># Site components</span>
+│   │   │   ├── <span class="ft-file">Navbar.tsx</span>
+│   │   │   ├── <span class="ft-file">Hero.tsx</span>
+│   │   │   ├── <span class="ft-file">SermonCard.tsx</span>
+│   │   │   ├── <span class="ft-file">EventCard.tsx</span>
+│   │   │   └── <span class="ft-file">Footer.tsx</span>
+│   │   └── <span class="ft-dir">admin/</span>                        <span class="ft-comment"># Dashboard components</span>
+│   │       ├── <span class="ft-file">Sidebar.tsx</span>
+│   │       ├── <span class="ft-file">StatsCard.tsx</span>
+│   │       └── <span class="ft-file">SermonUploadForm.tsx</span>
+│   ├── <span class="ft-dir">lib/</span>
+│   │   ├── <span class="ft-file">prisma.ts</span>                     <span class="ft-comment"># Prisma client</span>
+│   │   ├── <span class="ft-file">auth.ts</span>                       <span class="ft-comment"># NextAuth config</span>
+│   │   ├── <span class="ft-file">cloudinary.ts</span>                 <span class="ft-comment"># Upload helper</span>
+│   │   └── <span class="ft-file">paystack.ts</span>                   <span class="ft-comment"># Payment helper</span>
+│   ├── <span class="ft-dir">hooks/</span>                            <span class="ft-comment"># Custom React hooks</span>
+│   └── <span class="ft-dir">types/</span>                            <span class="ft-comment"># TypeScript types</span>
+├── <span class="ft-dir">prisma/</span>
+│   └── <span class="ft-special">schema.prisma</span>                     <span class="ft-comment"># DB schema</span>
+├── <span class="ft-file">.env.local</span>                           <span class="ft-comment"># Environment variables</span>
+├── <span class="ft-file">tailwind.config.ts</span>
+├── <span class="ft-file">next.config.ts</span>
+└── <span class="ft-file">package.json</span>
+    </div>
+
+    <!-- Install Commands -->
+    <div class="install-block">
+      <span class="step-label">Step 1 — Create Project</span>
+<span class="cmd">npx create-next-app@latest church-saas \
+  --typescript \
+  --tailwind \
+  --eslint \
+  --app \
+  --src-dir \
+  --import-alias "@/*"
+
+cd church-saas</span>
+    </div>
+
+    <div class="install-block">
+      <span class="step-label">Step 2 — Install Core Dependencies</span>
+<span class="comment"># ShadCN UI setup</span>
+<span class="cmd">npx shadcn-ui@latest init</span>
+
+<span class="comment"># Database & ORM</span>
+<span class="highlight-cmd">npm install prisma @prisma/client
+npx prisma init</span>
+
+<span class="comment"># Authentication</span>
+<span class="cmd">npm install next-auth @auth/prisma-adapter bcryptjs
+npm install -D @types/bcryptjs</span>
+
+<span class="comment"># File uploads & media</span>
+<span class="cmd">npm install cloudinary next-cloudinary</span>
+
+<span class="comment"># Payments</span>
+<span class="cmd">npm install paystack-api</span>
+
+<span class="comment"># Utilities</span>
+<span class="cmd">npm install zod react-hook-form @hookform/resolvers
+npm install lucide-react date-fns</span>
+    </div>
+
+    <div class="install-block">
+      <span class="step-label">Step 3 — Environment Variables (.env.local)</span>
+<span class="comment"># Database (Neon PostgreSQL)</span>
+<span class="highlight-cmd">DATABASE_URL="postgresql://user:pass@ep-xxx.neon.tech/church_saas?sslmode=require"</span>
+
+<span class="comment"># NextAuth</span>
+<span class="cmd">NEXTAUTH_SECRET="your-secret-here"
+NEXTAUTH_URL="http://localhost:3000"</span>
+
+<span class="comment"># Cloudinary</span>
+<span class="cmd">NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="your-cloud-name"
+CLOUDINARY_API_KEY="your-api-key"
+CLOUDINARY_API_SECRET="your-api-secret"</span>
+
+<span class="comment"># Paystack</span>
+<span class="cmd">PAYSTACK_SECRET_KEY="sk_test_xxxxx"
+NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY="pk_test_xxxxx"</span>
+    </div>
+  </div>
+
+  <!-- PHASE ROADMAP -->
+  <div class="section-label" style="padding-top:32px">
+    <span class="eyebrow">Development Phases</span>
+    <h2>Build Roadmap</h2>
+    <p>What we build next — step by step</p>
+  </div>
+  <div class="phase-roadmap">
+    <div class="phase-card">
+      <div class="phase-num">1</div>
+      <div class="phase-tag">✅ Current</div>
+      <h4>Foundation</h4>
+      <ul>
+        <li>Architecture plan</li>
+        <li>Project setup</li>
+        <li>UI/UX design system</li>
+        <li>Folder structure</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">2</div>
+      <div class="phase-tag">🔜 Next</div>
+      <h4>Auth System</h4>
+      <ul>
+        <li>Database schema (Prisma)</li>
+        <li>Login / Register pages</li>
+        <li>NextAuth setup</li>
+        <li>Protected routes</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">3</div>
+      <div class="phase-tag">📌 Planned</div>
+      <h4>Sermon System</h4>
+      <ul>
+        <li>Upload to Cloudinary</li>
+        <li>Sermon CRUD API</li>
+        <li>Video player page</li>
+        <li>Sermon listing</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">4</div>
+      <div class="phase-tag">📌 Planned</div>
+      <h4>Admin Dashboard</h4>
+      <ul>
+        <li>Full dashboard UI</li>
+        <li>Analytics charts</li>
+        <li>Events management</li>
+        <li>User management</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">5</div>
+      <div class="phase-tag">📌 Planned</div>
+      <h4>Payments + Live</h4>
+      <ul>
+        <li>Paystack/Flutterwave</li>
+        <li>Donation tracking</li>
+        <li>Live streaming embed</li>
+        <li>Stream management</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">6</div>
+      <div class="phase-tag">🚀 Advanced</div>
+      <h4>Multi-tenant SaaS</h4>
+      <ul>
+        <li>Church onboarding</li>
+        <li>Subdomain routing</li>
+        <li>Billing & plans</li>
+        <li>Super admin panel</div></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
