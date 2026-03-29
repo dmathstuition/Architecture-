@@ -3,39 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DMATHS Church Platform — Architecture & UI Preview</title>
+<title>Bridgeway Gospel Centre — Architecture & UI Preview</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --forest-deep:    #0A1C10;
-  --forest-dark:    #122A1A;
-  --forest-mid:     #1C4230;
-  --forest-rich:    #276044;
-  --sage:           #4D9970;
-  --sage-light:     #7DBF99;
-  --sage-pale:      #D4EDE0;
-  --ivory:          #FBF6EA;
-  --champagne:      #F3E8C8;
-  --champagne-dark: #E6D09A;
-  --warm-white:     #FFFCF6;
-  --amber:          #C96B28;
-  --amber-warm:     #E48A3C;
-  --amber-pale:     #FBE8D4;
-  --ink:            #1A1209;
-  --ink-mid:        #3D2E1E;
-  --brown-gray:     #7A6B5A;
-  --stone:          #B0A090;
-  --parchment:      #EFE8D8;
-  --success:        #3D9A6A;
+  --forest-deep:    #071422;
+  --forest-dark:    #0C1E35;
+  --forest-mid:     #134B8F;
+  --forest-rich:    #1B75BB;
+  --sage:           #3DAE45;
+  --sage-light:     #5FCC68;
+  --sage-pale:      #D2EFF8;
+  --ivory:          #F2F8FD;
+  --champagne:      #E2EEF8;
+  --champagne-dark: #BBCFE8;
+  --warm-white:     #FAFCFF;
+  --amber:          #1B75BB;
+  --amber-warm:     #3DAE45;
+  --amber-pale:     #D2EAF8;
+  --ink:            #060F1E;
+  --ink-mid:        #152848;
+  --brown-gray:     #5A7898;
+  --stone:          #7A9ABE;
+  --parchment:      #D0E3F2;
+  --success:        #2FA840;
   --danger:         #C4442A;
   --font-display:   'Cormorant Garamond', Georgia, serif;
   --font-body:      'Outfit', sans-serif;
   --font-label:     'Josefin Sans', sans-serif;
-  --shadow-sm: 0 2px 8px rgba(10,28,16,0.08);
-  --shadow-md: 0 8px 28px rgba(10,28,16,0.12);
-  --shadow-lg: 0 20px 60px rgba(10,28,16,0.18);
+  --shadow-sm: 0 2px 8px rgba(7,20,34,0.08);
+  --shadow-md: 0 8px 28px rgba(7,20,34,0.12);
+  --shadow-lg: 0 20px 60px rgba(7,20,34,0.18);
 }
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -51,8 +51,8 @@ body{
 /* ═══ TOP NAV ═══ */
 .top-nav{
   position:sticky;top:0;z-index:500;
-  background:var(--forest-deep);
-  border-bottom:1px solid rgba(78,153,112,0.2);
+  background:linear-gradient(135deg, #071422 0%, #0C1E35 100%);
+  border-bottom:1px solid rgba(27,117,187,0.2);
   box-shadow:0 2px 20px rgba(0,0,0,0.35);
 }
 .nav-inner{
@@ -63,7 +63,7 @@ body{
 .nav-brand{
   font-family:var(--font-label);font-size:11px;font-weight:700;letter-spacing:3px;
   color:var(--champagne);padding:14px 18px;white-space:nowrap;
-  border-right:1px solid rgba(255,255,255,0.06);
+  border-right:1px solid rgba(255,255,255,0.07);
   display:flex;align-items:center;gap:8px;flex-shrink:0;
 }
 .mini-cross{
@@ -78,13 +78,13 @@ body{
   background:none;border:none;
   font-family:var(--font-label);font-size:10px;font-weight:600;
   letter-spacing:1.5px;text-transform:uppercase;
-  color:rgba(211,197,168,0.45);
+  color:rgba(200,220,245,0.45);
   padding:14px 16px;cursor:pointer;white-space:nowrap;
   border-bottom:2px solid transparent;
   transition:all 0.2s ease;flex-shrink:0;
 }
-.tab-btn:hover{color:var(--champagne);background:rgba(255,255,255,0.03)}
-.tab-btn.on{color:var(--amber-warm);border-bottom-color:var(--amber-warm);background:rgba(201,107,40,0.08)}
+.tab-btn:hover{color:var(--champagne);background:rgba(255,255,255,0.04)}
+.tab-btn.on{color:var(--amber-warm);border-bottom-color:var(--amber-warm);background:rgba(61,174,69,0.10)}
 
 .tab-panel{display:none}
 .tab-panel.show{display:block;animation:reveal 0.3s ease forwards}
@@ -94,7 +94,7 @@ body{
 .sec-hd{text-align:center;padding:40px 20px 22px}
 .eyebrow{
   font-family:var(--font-label);font-size:10px;font-weight:700;
-  letter-spacing:3.5px;text-transform:uppercase;color:var(--sage);
+  letter-spacing:3.5px;text-transform:uppercase;color:var(--amber-warm);
   display:block;margin-bottom:10px;
 }
 .sec-hd h2{
@@ -144,20 +144,20 @@ body{
 }
 .flow-card::before{
   content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;
-  border-radius:50%;background:radial-gradient(circle,rgba(78,153,112,0.15) 0%,transparent 70%);
+  border-radius:50%;background:radial-gradient(circle,rgba(27,117,187,0.15) 0%,transparent 70%);
   pointer-events:none;
 }
 .flow-card h3{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--champagne);margin-bottom:20px;text-align:center}
 .f-row{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:5px;margin-bottom:10px}
 .f-box{
-  background:rgba(255,255,255,0.06);border:1px solid rgba(78,153,112,0.2);
+  background:rgba(255,255,255,0.07);border:1px solid rgba(27,117,187,0.2);
   border-radius:8px;padding:9px 12px;font-size:11px;font-weight:600;
   color:rgba(243,232,200,0.7);text-align:center;min-width:90px;
   font-family:var(--font-label);letter-spacing:.3px;
 }
 .f-box small{display:block;font-size:9px;opacity:.6;font-weight:400;margin-top:2px}
-.f-box.gl{background:rgba(78,153,112,0.13);border-color:var(--sage);color:var(--sage-light)}
-.f-box.al{background:rgba(201,107,40,0.13);border-color:var(--amber-warm);color:var(--amber-warm)}
+.f-box.gl{background:rgba(27,117,187,0.13);border-color:var(--sage);color:var(--sage-light)}
+.f-box.al{background:rgba(61,174,69,0.13);border-color:var(--amber-warm);color:var(--amber-warm)}
 .f-arr{color:var(--sage);font-size:14px}
 
 .tenant-card{
@@ -201,12 +201,12 @@ body{
 .s-links{display:flex;gap:1px}
 .s-links a{
   font-family:var(--font-label);font-size:10px;font-weight:600;letter-spacing:.8px;
-  color:rgba(211,197,168,0.5);text-decoration:none;padding:5px 9px;border-radius:4px;
+  color:rgba(200,220,245,0.5);text-decoration:none;padding:5px 9px;border-radius:4px;
 }
 .s-links a.on,.s-links a:hover{color:var(--champagne);background:rgba(255,255,255,0.05)}
 @media(max-width:500px){.s-links{display:none}}
 .give-cta{
-  background:var(--amber);color:var(--warm-white);
+  background:var(--forest-rich);color:white;
   font-family:var(--font-label);font-size:10px;font-weight:700;letter-spacing:1px;
   padding:6px 14px;border-radius:20px;white-space:nowrap;flex-shrink:0;
 }
@@ -220,13 +220,13 @@ body{
 .hero::before{
   content:'';position:absolute;inset:0;
   background:
-    radial-gradient(ellipse at 20% 60%,rgba(78,153,112,0.18) 0%,transparent 55%),
-    radial-gradient(ellipse at 80% 30%,rgba(201,107,40,0.12) 0%,transparent 45%),
-    linear-gradient(135deg,var(--forest-deep) 0%,#1a3828 100%);
+    radial-gradient(ellipse at 20% 60%,rgba(27,117,187,0.18) 0%,transparent 55%),
+    radial-gradient(ellipse at 80% 30%,rgba(27,117,187,0.12) 0%,transparent 45%),
+    linear-gradient(135deg,var(--forest-deep) 0%,#0C1E35 100%);
 }
 .hero::after{
   content:'';position:absolute;right:0;top:0;bottom:0;width:35%;
-  background:repeating-linear-gradient(-45deg,transparent,transparent 28px,rgba(78,153,112,0.04) 28px,rgba(78,153,112,0.04) 29px);
+  background:repeating-linear-gradient(-45deg,transparent,transparent 28px,rgba(27,117,187,0.04) 28px,rgba(27,117,187,0.04) 29px);
   pointer-events:none;
 }
 .h-inner{position:relative;z-index:2;text-align:center;max-width:480px}
@@ -242,8 +242,8 @@ body{
 .h-title em{font-style:italic;color:var(--amber-warm)}
 .h-sub{font-size:12.5px;color:rgba(211,197,168,0.65);line-height:1.75;margin-bottom:24px}
 .h-btns{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
-.bc{background:var(--amber);color:var(--warm-white);font-family:var(--font-label);font-size:10px;font-weight:700;letter-spacing:1px;padding:10px 20px;border-radius:4px}
-.bg{border:1.5px solid rgba(211,197,168,0.25);color:rgba(211,197,168,0.8);font-family:var(--font-label);font-size:10px;font-weight:600;letter-spacing:.8px;padding:9px 20px;border-radius:4px}
+.bc{background:var(--amber);color:white;font-family:var(--font-label);font-size:10px;font-weight:700;letter-spacing:1px;padding:10px 20px;border-radius:4px}
+.bg{border:1.5px solid rgba(27,117,187,0.35);color:rgba(200,220,245,0.8);font-family:var(--font-label);font-size:10px;font-weight:600;letter-spacing:.8px;padding:9px 20px;border-radius:4px}
 .bl{background:#C4442A;color:white;font-family:var(--font-label);font-size:10px;font-weight:700;letter-spacing:1px;padding:10px 16px;border-radius:4px;display:flex;align-items:center;gap:6px}
 .lpulse{width:7px;height:7px;border-radius:50%;background:white;animation:blink 1.2s infinite}
 @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.85)}}
@@ -259,7 +259,7 @@ body{
 .sc{background:var(--ivory);border:1px solid var(--parchment);border-radius:9px;overflow:hidden;min-width:152px;flex-shrink:0;transition:transform .2s}
 .sc:hover{transform:translateY(-2px)}
 .sc-th{height:86px;display:flex;align-items:center;justify-content:center;position:relative}
-.sc-play{width:32px;height:32px;border-radius:50%;background:rgba(201,107,40,0.88);display:flex;align-items:center;justify-content:center;color:white;font-size:11px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.sc-play{width:32px;height:32px;border-radius:50%;background:rgba(27,117,187,0.88);display:flex;align-items:center;justify-content:center;color:white;font-size:11px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
 .sc-new{position:absolute;top:7px;right:7px;background:var(--amber);color:white;font-family:var(--font-label);font-size:8px;font-weight:700;letter-spacing:1px;padding:2px 7px;border-radius:20px}
 .sc-inf{padding:9px 11px}
 .sc-ttl{font-size:11px;font-weight:600;color:var(--ink);margin-bottom:3px;line-height:1.4}
@@ -267,20 +267,20 @@ body{
 
 .ev-scroll{display:flex;gap:11px;overflow-x:auto;padding-bottom:5px;scrollbar-width:none}
 .ev-scroll::-webkit-scrollbar{display:none}
-.ev{background:var(--forest-dark);border-radius:9px;padding:14px;min-width:148px;flex-shrink:0;position:relative;overflow:hidden;border:1px solid rgba(78,153,112,0.15)}
+.ev{background:var(--forest-dark);border-radius:9px;padding:14px;min-width:148px;flex-shrink:0;position:relative;overflow:hidden;border:1px solid rgba(27,117,187,0.15)}
 .ev::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber-warm)}
 .ev-d{font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--amber-warm);line-height:1}
 .ev-m{font-family:var(--font-label);font-size:9px;letter-spacing:2px;color:var(--sage-light);margin-bottom:9px}
 .ev-n{font-size:11.5px;font-weight:600;color:var(--champagne);margin-bottom:3px;line-height:1.4}
-.ev-t{font-size:10px;color:rgba(176,160,144,.7)}
+.ev-t{font-size:10px;color:rgba(120,154,190,.7)}
 
 .give-bar{
-  background:linear-gradient(135deg,var(--forest-deep),#1c3d28);
+  background:linear-gradient(135deg,var(--forest-deep),#0D2045);
   padding:20px 22px;display:flex;align-items:center;justify-content:space-between;
-  gap:14px;flex-wrap:wrap;border-top:1px solid rgba(78,153,112,.18);
+  gap:14px;flex-wrap:wrap;border-top:1px solid rgba(27,117,187,.18);
 }
 .give-bar h4{font-family:var(--font-display);font-size:15px;color:var(--champagne)}
-.give-bar p{font-size:12px;color:rgba(176,160,144,.7);margin-top:2px}
+.give-bar p{font-size:12px;color:rgba(120,154,190,.7);margin-top:2px}
 .give-btns{display:flex;gap:9px;flex-shrink:0}
 
 .cmap{background:var(--warm-white);border:1px solid var(--parchment);border-radius:12px;padding:20px;margin-top:18px}
@@ -300,19 +300,19 @@ body{
 }
 
 .d-sidebar{background:var(--forest-deep);display:flex;flex-direction:column;overflow:hidden;flex-shrink:0}
-.d-slogo{padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;gap:9px}
+.d-slogo{padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:9px}
 .d-slogotext{font-family:var(--font-label);font-size:11px;font-weight:700;letter-spacing:2px;color:var(--champagne)}
 .d-slogotext small{display:block;font-size:9px;color:var(--stone);letter-spacing:.8px;margin-top:1px}
 .d-menu{padding:12px 0;flex:1;overflow-y:auto;scrollbar-width:none}
 .d-menu::-webkit-scrollbar{display:none}
-.d-sec{font-family:var(--font-label);font-size:8.5px;font-weight:700;letter-spacing:2.5px;color:rgba(176,160,144,.35);padding:9px 18px 3px;text-transform:uppercase}
-.d-item{display:flex;align-items:center;gap:9px;padding:8px 18px;font-family:var(--font-body);font-size:12px;font-weight:500;color:rgba(211,197,168,.45);cursor:pointer;transition:all .15s;position:relative}
-.d-item:hover{background:rgba(255,255,255,.04);color:var(--champagne)}
-.d-item.on{background:rgba(201,107,40,.1);color:var(--amber-warm);border-right:2px solid var(--amber-warm)}
+.d-sec{font-family:var(--font-label);font-size:8.5px;font-weight:700;letter-spacing:2.5px;color:rgba(120,154,190,.35);padding:9px 18px 3px;text-transform:uppercase}
+.d-item{display:flex;align-items:center;gap:9px;padding:8px 18px;font-family:var(--font-body);font-size:12px;font-weight:500;color:rgba(200,220,245,.45);cursor:pointer;transition:all .15s;position:relative}
+.d-item:hover{background:rgba(255,255,255,.06);color:var(--champagne)}
+.d-item.on{background:rgba(27,117,187,.15);color:var(--forest-rich);border-right:2px solid var(--forest-rich)}
 .d-ic{font-size:13px;width:18px;text-align:center;flex-shrink:0}
-.d-badge{margin-left:auto;background:var(--amber);color:white;font-family:var(--font-label);font-size:8.5px;font-weight:700;padding:1px 7px;border-radius:20px}
-.d-foot{padding:13px 18px;border-top:1px solid rgba(255,255,255,.05);display:flex;align-items:center;gap:9px}
-.d-avt{width:29px;height:29px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--forest-mid));display:flex;align-items:center;justify-content:center;font-family:var(--font-label);font-size:10px;font-weight:700;color:white;flex-shrink:0}
+.d-badge{margin-left:auto;background:var(--amber-warm);color:white;font-family:var(--font-label);font-size:8.5px;font-weight:700;padding:1px 7px;border-radius:20px}
+.d-foot{padding:13px 18px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:9px}
+.d-avt{width:29px;height:29px;border-radius:50%;background:linear-gradient(135deg,var(--amber-warm),var(--forest-mid));display:flex;align-items:center;justify-content:center;font-family:var(--font-label);font-size:10px;font-weight:700;color:white;flex-shrink:0}
 .d-uname{font-size:11px;color:var(--champagne);font-weight:600}
 .d-urole{font-size:9px;color:var(--stone)}
 
@@ -321,7 +321,7 @@ body{
 .d-ttl{font-size:14px;font-weight:600;color:var(--forest-mid)}
 .d-sub{font-family:var(--font-label);font-size:9.5px;letter-spacing:.5px;color:var(--stone);margin-top:1px}
 .d-tr{display:flex;align-items:center;gap:9px}
-.d-upbtn{background:var(--forest-mid);color:var(--champagne);font-family:var(--font-label);font-size:10px;font-weight:700;letter-spacing:.8px;padding:7px 13px;border-radius:6px;display:flex;align-items:center;gap:4px;white-space:nowrap}
+.d-upbtn{background:var(--forest-rich);color:white;font-family:var(--font-label);font-size:10px;font-weight:700;letter-spacing:.8px;padding:7px 13px;border-radius:6px;display:flex;align-items:center;gap:4px;white-space:nowrap}
 
 .d-content{padding:16px 18px;overflow-y:auto;flex:1;scrollbar-width:thin;scrollbar-color:var(--parchment) transparent}
 
@@ -351,7 +351,7 @@ body{
 
 .chart{display:flex;align-items:flex-end;gap:5px;height:76px;border-bottom:1px solid var(--parchment);margin-bottom:7px;padding-bottom:2px}
 .bcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px}
-.bfill{width:100%;border-radius:3px 3px 0 0;background:linear-gradient(180deg,var(--sage),var(--forest-rich));cursor:pointer;transition:opacity .15s}
+.bfill{width:100%;border-radius:3px 3px 0 0;background:linear-gradient(180deg,var(--sage),var(--forest-mid));cursor:pointer;transition:opacity .15s}
 .bfill:hover{opacity:.75}
 .bfill.hi{background:linear-gradient(180deg,var(--amber-warm),var(--amber))}
 .blbl{font-family:var(--font-label);font-size:8px;color:var(--stone)}
@@ -369,12 +369,12 @@ body{
 /* ═══════════════ TAB 4 — SETUP ═══════════════ */
 .swrap{max-width:800px;margin:0 auto;padding:0 16px 56px}
 .code{
-  background:#111810;border-radius:12px;padding:22px 26px;
+  background:#080F1E;border-radius:12px;padding:22px 26px;
   font-family:'Courier New',monospace;font-size:12px;line-height:1.85;
   color:#d0c8b0;box-shadow:var(--shadow-md);margin-bottom:18px;
-  overflow-x:auto;border:1px solid rgba(78,153,112,.15);
+  overflow-x:auto;border:1px solid rgba(27,117,187,.15);
 }
-.stag{font-family:var(--font-label);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--sage-light);display:block;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(78,153,112,.13)}
+.stag{font-family:var(--font-label);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--sage-light);display:block;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(27,117,187,.13)}
 .cc{color:#89c4e1}.ch{color:#e8a85a}.cok{color:#7dbf99}.cmt{color:#5a7060}
 .cdir{color:#7dbf99;font-weight:bold}.cfile{color:#d0c8b0}
 
@@ -401,7 +401,12 @@ body{
 <!-- ═════════ TOP NAV ═════════ -->
 <nav class="top-nav">
   <div class="nav-inner">
-    <div class="nav-brand"><div class="mini-cross"></div>DMATHS</div>
+    <div class="nav-brand"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+  <rect x="2" y="4" width="2.5" height="12" rx="1" fill="#3DAE45"/>
+  <rect x="7.75" y="2" width="2.5" height="14" rx="1" fill="#1B75BB"/>
+  <rect x="13.5" y="4" width="2.5" height="12" rx="1" fill="#1B75BB"/>
+  <path d="M3 10 Q9 4 15 10" stroke="#3DAE45" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+</svg>BRIDGEWAY</div>
     <button class="tab-btn on"  onclick="go('arch',this)">📐 Architecture</button>
     <button class="tab-btn"     onclick="go('home',this)">🌐 Homepage</button>
     <button class="tab-btn"     onclick="go('dash',this)">⚙️ Dashboard</button>
@@ -500,11 +505,11 @@ body{
 
       <div class="tenant-card">
         <h3>🏛️ Multi-Tenant SaaS Architecture</h3>
-        <p>Each church gets its own isolated data scope, subdomain, and admin panel. Phase 6 turns this into a fully white-label SaaS product under the DMATHS brand.</p>
+        <p>Each church gets its own isolated data scope, subdomain, and admin panel. Phase 6 turns this into a fully white-label SaaS product under the BRIDGEWAY brand.</p>
         <div class="t-boxes">
-          <div class="t-box"><div class="t-n">⛪ Grace Chapel</div><div class="t-u">gracechapel.dmaths.com</div><div class="t-tg">Own brand · Own admin · Own data</div></div>
-          <div class="t-box"><div class="t-n">🙌 Victory Church</div><div class="t-u">victory.dmaths.com</div><div class="t-tg">Own brand · Own admin · Own data</div></div>
-          <div class="t-box sp"><div class="t-n">👑 DMATHS Super Admin</div><div class="t-u">admin.dmaths.com</div><div class="t-tg">Manages all tenants · Billing</div></div>
+          <div class="t-box"><div class="t-n">⛪ Bridgeway Gospel Centre</div><div class="t-u">bridgeway.gospelcentre.com</div><div class="t-tg">Own brand · Own admin · Own data</div></div>
+          <div class="t-box"><div class="t-n">🙌 Victory Church</div><div class="t-u">victory.gospelcentre.com</div><div class="t-tg">Own brand · Own admin · Own data</div></div>
+          <div class="t-box sp"><div class="t-n">👑 BRIDGEWAY Super Admin</div><div class="t-u">admin.gospelcentre.com</div><div class="t-tg">Manages all tenants · Billing</div></div>
         </div>
       </div>
 
@@ -523,19 +528,24 @@ body{
     <div class="bchrome">
       <div class="bbar">
         <div class="bdots"><span></span><span></span><span></span></div>
-        <div class="burl">https://gracechapel.dmaths.com</div>
+        <div class="burl">https://bridgeway.gospelcentre.com</div>
       </div>
 
       <div class="s-head">
         <div class="s-logo">
-          <div class="s-cross"></div>
-          <div class="s-logotext">GRACE CHAPEL</div>
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+  <rect x="2" y="5" width="3" height="14" rx="1.2" fill="#3DAE45"/>
+  <rect x="9.5" y="2" width="3" height="17" rx="1.2" fill="#E2EEF8"/>
+  <rect x="17" y="5" width="3" height="14" rx="1.2" fill="#E2EEF8"/>
+  <path d="M3.5 12 Q11 4 20 12" stroke="#3DAE45" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+</svg>
+          <div class="s-logotext">BRIDGEWAY GOSPEL CENTRE</div>
         </div>
         <div class="s-links">
           <a href="#" class="on">Home</a><a href="#">Sermons</a>
           <a href="#">Events</a><a href="#">Live</a><a href="#">About</a>
         </div>
-        <div class="give-cta">🌿 Give</div>
+        <div class="give-cta">✝ Give</div>
       </div>
 
       <div class="hero">
@@ -554,10 +564,10 @@ body{
       <div class="strip">
         <div class="strip-ttl">Recent <span>Messages</span></div>
         <div class="sc-scroll">
-          <div class="sc"><div class="sc-th" style="background:linear-gradient(135deg,#1c4230,#0a1c10)"><div class="sc-play">▶</div><div class="sc-new">NEW</div></div><div class="sc-inf"><div class="sc-ttl">Walking in Faith — Pt.3</div><div class="sc-mt">PASTOR JAMES · DEC 22</div></div></div>
-          <div class="sc"><div class="sc-th" style="background:linear-gradient(135deg,#2d3a1c,#141a0a)"><div class="sc-play">▶</div></div><div class="sc-inf"><div class="sc-ttl">The Power of Prayer</div><div class="sc-mt">PASTOR JAMES · DEC 15</div></div></div>
-          <div class="sc"><div class="sc-th" style="background:linear-gradient(135deg,#3a2c1c,#1a120a)"><div class="sc-play">▶</div></div><div class="sc-inf"><div class="sc-ttl">Grace Abounding</div><div class="sc-mt">MIN. SARAH · DEC 8</div></div></div>
-          <div class="sc"><div class="sc-th" style="background:linear-gradient(135deg,#1c3040,#0a1520)"><div class="sc-play">▶</div></div><div class="sc-inf"><div class="sc-ttl">God's Faithful Promise</div><div class="sc-mt">PASTOR JAMES · DEC 1</div></div></div>
+          <div class="sc"><div class="sc-th" style="background:linear-gradient(135deg,#134B8F,#071422)"><div class="sc-play">▶</div><div class="sc-new">NEW</div></div><div class="sc-inf"><div class="sc-ttl">Walking in Faith — Pt.3</div><div class="sc-mt">PASTOR JAMES · DEC 22</div></div></div>
+          <div class="sc"><div class="sc-th" style="background:linear-gradient(135deg,#0D2A50,#081630)"><div class="sc-play">▶</div></div><div class="sc-inf"><div class="sc-ttl">The Power of Prayer</div><div class="sc-mt">PASTOR JAMES · DEC 15</div></div></div>
+          <div class="sc"><div class="sc-th" style="background:linear-gradient(135deg,#1A3060,#0B1A38)"><div class="sc-play">▶</div></div><div class="sc-inf"><div class="sc-ttl">Grace Abounding</div><div class="sc-mt">MIN. SARAH · DEC 8</div></div></div>
+          <div class="sc"><div class="sc-th" style="background:linear-gradient(135deg,#0C2040,#071222)"><div class="sc-play">▶</div></div><div class="sc-inf"><div class="sc-ttl">God's Faithful Promise</div><div class="sc-mt">PASTOR JAMES · DEC 1</div></div></div>
         </div>
       </div>
 
@@ -572,7 +582,7 @@ body{
       </div>
 
       <div class="give-bar">
-        <div><h4>Support the Ministry 🌿</h4><p>Your giving transforms lives and extends the Kingdom's reach.</p></div>
+        <div><h4>Support the Ministry ✝</h4><p>Your giving transforms lives and extends the Kingdom's reach.</p></div>
         <div class="give-btns"><div class="bc">Give Now</div><div class="bg">Learn More</div></div>
       </div>
     </div>
@@ -602,14 +612,19 @@ body{
     <div class="dbchrome">
       <div class="bbar">
         <div class="bdots"><span></span><span></span><span></span></div>
-        <div class="burl">https://gracechapel.dmaths.com/admin/dashboard</div>
+        <div class="burl">https://bridgeway.gospelcentre.com/admin/dashboard</div>
       </div>
       <div class="d-layout">
 
         <div class="d-sidebar">
           <div class="d-slogo">
-            <div class="mini-cross"></div>
-            <div><div class="d-slogotext">DMATHS<small>Grace Chapel</small></div></div>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+  <rect x="2" y="4" width="2.5" height="12" rx="1" fill="#3DAE45"/>
+  <rect x="7.75" y="2" width="2.5" height="14" rx="1" fill="#1B75BB"/>
+  <rect x="13.5" y="4" width="2.5" height="12" rx="1" fill="#1B75BB"/>
+  <path d="M3 10 Q9 4 15 10" stroke="#3DAE45" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+</svg>
+            <div><div class="d-slogotext">BRIDGEWAY<small>Bridgeway Gospel Centre</small></div></div>
           </div>
           <div class="d-menu">
             <div class="d-sec">Main</div>
@@ -633,7 +648,7 @@ body{
 
         <div class="d-main">
           <div class="d-topbar">
-            <div><div class="d-ttl">Good Morning, Pastor 🌿</div><div class="d-sub">Thursday, March 26 · Grace Chapel</div></div>
+            <div><div class="d-ttl">Good Morning, Pastor 🙏</div><div class="d-sub">Thursday, March 26 · Bridgeway Gospel Centre</div></div>
             <div class="d-tr"><div class="d-upbtn">+ Upload Sermon</div><div class="d-avt">PA</div></div>
           </div>
           <div class="d-content">
@@ -646,9 +661,9 @@ body{
             <div class="wgrid">
               <div class="widget">
                 <div class="whead"><div class="wttl">Recent Sermons</div><div class="wact">View all →</div></div>
-                <div class="sr"><div class="sm" style="background:linear-gradient(135deg,#276044,#0a1c10)">▶</div><div style="flex:1;overflow:hidden"><div class="srt">Walking in Faith — Pt. 3</div><div class="srm">Dec 22 · Video + Audio</div></div><div class="srv">1.2K</div></div>
-                <div class="sr"><div class="sm" style="background:linear-gradient(135deg,#5a3a1a,#2a1a0a)">▶</div><div style="flex:1;overflow:hidden"><div class="srt">The Power of Prayer</div><div class="srm">Dec 15 · Video</div></div><div class="srv">876</div></div>
-                <div class="sr"><div class="sm" style="background:linear-gradient(135deg,#1c3a40,#0a1c20)">▶</div><div style="flex:1;overflow:hidden"><div class="srt">Grace Abounding</div><div class="srm">Dec 8 · Audio only</div></div><div class="srv">542</div></div>
+                <div class="sr"><div class="sm" style="background:linear-gradient(135deg,#1B75BB,#071422)">▶</div><div style="flex:1;overflow:hidden"><div class="srt">Walking in Faith — Pt. 3</div><div class="srm">Dec 22 · Video + Audio</div></div><div class="srv">1.2K</div></div>
+                <div class="sr"><div class="sm" style="background:linear-gradient(135deg,#1B5EA0,#0C2040)">▶</div><div style="flex:1;overflow:hidden"><div class="srt">The Power of Prayer</div><div class="srm">Dec 15 · Video</div></div><div class="srv">876</div></div>
+                <div class="sr"><div class="sm" style="background:linear-gradient(135deg,#0C2A40,#071830)">▶</div><div style="flex:1;overflow:hidden"><div class="srt">Grace Abounding</div><div class="srm">Dec 8 · Audio only</div></div><div class="srv">542</div></div>
               </div>
               <div class="widget">
                 <div class="whead"><div class="wttl">Views This Week</div><div class="wact">Month ▾</div></div>
@@ -665,9 +680,9 @@ body{
               </div>
               <div class="widget wfull">
                 <div class="whead"><div class="wttl">Recent Donations</div><div class="wact">View all →</div></div>
-                <div class="dr"><div class="dl"><div class="da" style="background:linear-gradient(135deg,#276044,#0f2d1a)">AO</div><div><div class="dn">Adaeze Okonkwo</div><div class="dt">2 hours ago · Tithe</div></div></div><div class="damt">₦50,000</div></div>
-                <div class="dr"><div class="dl"><div class="da" style="background:linear-gradient(135deg,#c96b28,#7a3d12)">BI</div><div><div class="dn">Babatunde Idowu</div><div class="dt">5 hours ago · Offering</div></div></div><div class="damt">₦25,000</div></div>
-                <div class="dr"><div class="dl"><div class="da" style="background:linear-gradient(135deg,#3d9a6a,#1a5038)">EN</div><div><div class="dn">Emeka Nwosu</div><div class="dt">Yesterday · Seeds</div></div></div><div class="damt">₦100,000</div></div>
+                <div class="dr"><div class="dl"><div class="da" style="background:linear-gradient(135deg,#1B75BB,#0f2d1a)">AO</div><div><div class="dn">Adaeze Okonkwo</div><div class="dt">2 hours ago · Tithe</div></div></div><div class="damt">₦50,000</div></div>
+                <div class="dr"><div class="dl"><div class="da" style="background:linear-gradient(135deg,#1B75BB,#0D3A7A)">BI</div><div><div class="dn">Babatunde Idowu</div><div class="dt">5 hours ago · Offering</div></div></div><div class="damt">₦25,000</div></div>
+                <div class="dr"><div class="dl"><div class="da" style="background:linear-gradient(135deg,#2FA840,#1A4880)">EN</div><div><div class="dn">Emeka Nwosu</div><div class="dt">Yesterday · Seeds</div></div></div><div class="damt">₦100,000</div></div>
               </div>
             </div>
           </div>
@@ -687,7 +702,7 @@ body{
   <div class="swrap">
 
     <div class="code">
-<span style="color:var(--amber-warm);font-weight:bold">church-saas/</span>                     <span class="cmt"># DMATHS Church Platform</span>
+<span style="color:var(--amber-warm);font-weight:bold">church-saas/</span>                     <span class="cmt"># Bridgeway Gospel Centre</span>
 ├── <span class="cdir">src/</span>
 │   ├── <span class="cdir">app/</span>                          <span class="cmt"># Next.js App Router</span>
 │   │   ├── <span class="cdir">(public)/</span>                 <span class="cmt"># Public-facing pages</span>
@@ -748,7 +763,7 @@ cd church-saas</span>
     <div class="code">
       <span class="stag">Step 3 — .env.local Variables</span>
 <span class="cmt"># Neon PostgreSQL</span>
-<span class="ch">DATABASE_URL="postgresql://user:pass@ep-xxx.neon.tech/church_saas?sslmode=require"</span>
+<span class="ch">DATABASE_URL="postgresql://user:<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="23534250506346530e5b5b5b0d4d464c4d0d5746404b">[email&#160;protected]</a>/church_saas?sslmode=require"</span>
 
 <span class="cmt"># NextAuth</span>
 <span class="cc">NEXTAUTH_SECRET="run: openssl rand -base64 32"
@@ -779,13 +794,12 @@ NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY="pk_test_xxxxx"</span>
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function go(id, btn) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('show'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('on'));
   document.getElementById('p-' + id).classList.add('show');
   btn.classList.add('on');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
 </body>
