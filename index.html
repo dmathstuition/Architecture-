@@ -1,806 +1,659 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bridgeway Gospel Centre — Architecture & UI Preview</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --forest-deep:    #071422;
-  --forest-dark:    #0C1E35;
-  --forest-mid:     #134B8F;
-  --forest-rich:    #1B75BB;
-  --sage:           #3DAE45;
-  --sage-light:     #5FCC68;
-  --sage-pale:      #D2EFF8;
-  --ivory:          #F2F8FD;
-  --champagne:      #E2EEF8;
-  --champagne-dark: #BBCFE8;
-  --warm-white:     #FAFCFF;
-  --amber:          #1B75BB;
-  --amber-warm:     #3DAE45;
-  --amber-pale:     #D2EAF8;
-  --ink:            #060F1E;
-  --ink-mid:        #152848;
-  --brown-gray:     #5A7898;
-  --stone:          #7A9ABE;
-  --parchment:      #D0E3F2;
-  --success:        #2FA840;
-  --danger:         #C4442A;
-  --font-display:   'Cormorant Garamond', Georgia, serif;
-  --font-body:      'Outfit', sans-serif;
-  --font-label:     'Josefin Sans', sans-serif;
-  --shadow-sm: 0 2px 8px rgba(7,20,34,0.08);
-  --shadow-md: 0 8px 28px rgba(7,20,34,0.12);
-  --shadow-lg: 0 20px 60px rgba(7,20,34,0.18);
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KMTC Webinar 1.0 Registration</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700;800;900&family=Oswald:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --kmtc-purple: #7f00e8;
+      --kmtc-deep-purple: #3d0647;
+      --kmtc-orange: #ff5128;
+      --kmtc-green: #06b579;
+      --kmtc-yellow: #ffc400;
+      --kmtc-pink: #d96bdc;
+      --kmtc-black: #141414;
+      --kmtc-soft: #f3f3f3;
+    }
 
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  font-family:var(--font-body);
-  background:var(--ivory);
-  color:var(--ink);
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-}
+    * { box-sizing: border-box; }
 
-/* ═══ TOP NAV ═══ */
-.top-nav{
-  position:sticky;top:0;z-index:500;
-  background:linear-gradient(135deg, #071422 0%, #0C1E35 100%);
-  border-bottom:1px solid rgba(27,117,187,0.2);
-  box-shadow:0 2px 20px rgba(0,0,0,0.35);
-}
-.nav-inner{
-  display:flex;align-items:stretch;
-  overflow-x:auto;scrollbar-width:none;
-}
-.nav-inner::-webkit-scrollbar{display:none}
-.nav-brand{
-  font-family:var(--font-label);font-size:11px;font-weight:700;letter-spacing:3px;
-  color:var(--champagne);padding:14px 18px;white-space:nowrap;
-  border-right:1px solid rgba(255,255,255,0.07);
-  display:flex;align-items:center;gap:8px;flex-shrink:0;
-}
-.mini-cross{
-  width:17px;height:17px;position:relative;flex-shrink:0;
-}
-.mini-cross::before,.mini-cross::after{
-  content:'';position:absolute;background:var(--amber-warm);border-radius:1px;
-}
-.mini-cross::before{width:2px;height:100%;left:50%;transform:translateX(-50%)}
-.mini-cross::after{height:2px;width:65%;top:33%;left:17%}
-.tab-btn{
-  background:none;border:none;
-  font-family:var(--font-label);font-size:10px;font-weight:600;
-  letter-spacing:1.5px;text-transform:uppercase;
-  color:rgba(200,220,245,0.45);
-  padding:14px 16px;cursor:pointer;white-space:nowrap;
-  border-bottom:2px solid transparent;
-  transition:all 0.2s ease;flex-shrink:0;
-}
-.tab-btn:hover{color:var(--champagne);background:rgba(255,255,255,0.04)}
-.tab-btn.on{color:var(--amber-warm);border-bottom-color:var(--amber-warm);background:rgba(61,174,69,0.10)}
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      color: var(--kmtc-black);
+      background:
+        radial-gradient(circle at top left, rgba(127, 0, 232, .16), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(255, 81, 40, .18), transparent 28%),
+        #f7f4ef;
+      overflow-x: hidden;
+    }
 
-.tab-panel{display:none}
-.tab-panel.show{display:block;animation:reveal 0.3s ease forwards}
-@keyframes reveal{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+    .brand-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .08;
+      background-image:
+        linear-gradient(45deg, transparent 47%, var(--kmtc-black) 48%, var(--kmtc-black) 52%, transparent 53%),
+        linear-gradient(-45deg, transparent 47%, var(--kmtc-black) 48%, var(--kmtc-black) 52%, transparent 53%);
+      background-size: 42px 42px;
+      z-index: -2;
+    }
 
-/* ═══ SECTION HEADERS ═══ */
-.sec-hd{text-align:center;padding:40px 20px 22px}
-.eyebrow{
-  font-family:var(--font-label);font-size:10px;font-weight:700;
-  letter-spacing:3.5px;text-transform:uppercase;color:var(--amber-warm);
-  display:block;margin-bottom:10px;
-}
-.sec-hd h2{
-  font-family:var(--font-display);font-size:clamp(24px,5vw,32px);
-  font-weight:600;color:var(--forest-mid);line-height:1.2;
-}
-.sec-hd h2 em{font-style:italic;color:var(--amber)}
-.sec-hd p{font-size:13.5px;color:var(--brown-gray);margin-top:7px;
-  max-width:460px;margin-left:auto;margin-right:auto;line-height:1.7}
+    .top-strip {
+      height: 16px;
+      background: linear-gradient(90deg, var(--kmtc-purple) 0 25%, var(--kmtc-green) 25% 42%, var(--kmtc-orange) 42% 65%, var(--kmtc-pink) 65% 82%, var(--kmtc-yellow) 82% 100%);
+    }
 
-/* ═══════════════ TAB 1 — ARCH ═══════════════ */
-.arch-wrap{max-width:1080px;margin:0 auto;padding:0 16px 56px}
-.arch-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:620px){.arch-grid{grid-template-columns:1fr}}
+    .navbar {
+      background: rgba(247, 244, 239, .86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(20,20,20,.08);
+    }
 
-.a-card{
-  background:var(--warm-white);border:1px solid var(--parchment);
-  border-radius:14px;padding:24px;box-shadow:var(--shadow-sm);
-  position:relative;overflow:hidden;
-  transition:transform .2s,box-shadow .2s;
-}
-.a-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
-.a-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--sage),var(--amber-warm));
-  border-radius:14px 14px 0 0;
-}
-.a-ico{
-  width:40px;height:40px;border-radius:9px;background:var(--sage-pale);
-  display:flex;align-items:center;justify-content:center;font-size:17px;
-  margin-bottom:13px;
-}
-.a-card h3{font-family:var(--font-display);font-size:19px;font-weight:600;color:var(--forest-mid);margin-bottom:9px}
-.a-card p{font-size:12.5px;color:var(--brown-gray);line-height:1.75;margin-bottom:13px}
-.pill{
-  display:inline-block;font-family:var(--font-label);font-size:10px;font-weight:600;
-  letter-spacing:.4px;padding:3px 10px;border-radius:20px;margin:2px 2px 2px 0;
-}
-.ps{background:var(--sage-pale);color:var(--forest-rich)}
-.pa{background:var(--amber-pale);color:var(--amber)}
-.pn{background:var(--parchment);color:var(--ink-mid)}
+    .logo-mark {
+      width: 64px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--kmtc-purple);
+      font-family: "Anton", sans-serif;
+      font-size: 1.65rem;
+      letter-spacing: -2px;
+      transform: skew(-6deg);
+      box-shadow: 8px 8px 0 var(--kmtc-orange);
+    }
 
-/* flow */
-.flow-card{
-  grid-column:1/-1;background:var(--forest-deep);
-  border-radius:16px;padding:28px;position:relative;overflow:hidden;
-}
-.flow-card::before{
-  content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;
-  border-radius:50%;background:radial-gradient(circle,rgba(27,117,187,0.15) 0%,transparent 70%);
-  pointer-events:none;
-}
-.flow-card h3{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--champagne);margin-bottom:20px;text-align:center}
-.f-row{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:5px;margin-bottom:10px}
-.f-box{
-  background:rgba(255,255,255,0.07);border:1px solid rgba(27,117,187,0.2);
-  border-radius:8px;padding:9px 12px;font-size:11px;font-weight:600;
-  color:rgba(243,232,200,0.7);text-align:center;min-width:90px;
-  font-family:var(--font-label);letter-spacing:.3px;
-}
-.f-box small{display:block;font-size:9px;opacity:.6;font-weight:400;margin-top:2px}
-.f-box.gl{background:rgba(27,117,187,0.13);border-color:var(--sage);color:var(--sage-light)}
-.f-box.al{background:rgba(61,174,69,0.13);border-color:var(--amber-warm);color:var(--amber-warm)}
-.f-arr{color:var(--sage);font-size:14px}
+    .nav-link { font-weight: 800; text-transform: uppercase; letter-spacing: .05em; }
 
-.tenant-card{
-  grid-column:1/-1;background:var(--warm-white);border:1px solid var(--parchment);
-  border-radius:14px;padding:24px;box-shadow:var(--shadow-sm);
-}
-.tenant-card h3{font-family:var(--font-display);font-size:19px;font-weight:600;color:var(--forest-mid);margin-bottom:8px}
-.tenant-card p{font-size:12.5px;color:var(--brown-gray);line-height:1.7;margin-bottom:16px}
-.t-boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-@media(max-width:540px){.t-boxes{grid-template-columns:1fr}}
-.t-box{background:var(--ivory);border:1px solid var(--parchment);border-radius:9px;padding:14px}
-.t-box.sp{background:var(--amber-pale);border-color:var(--champagne-dark)}
-.t-n{font-size:12px;font-weight:700;color:var(--forest-mid);margin-bottom:3px}
-.t-u{font-size:11px;color:var(--sage);font-family:monospace}
-.t-tg{font-size:10px;color:var(--brown-gray);margin-top:5px}
-.t-box.sp .t-n{color:var(--amber)}
-.t-box.sp .t-u{color:var(--amber-warm)}
+    .btn-kmtc {
+      border: 0;
+      border-radius: 0;
+      padding: .95rem 1.3rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--kmtc-black);
+      box-shadow: 7px 7px 0 var(--kmtc-yellow);
+      transition: .2s ease;
+    }
 
-/* ═══════════════ TAB 2 — HOMEPAGE ═══════════════ */
-.bwrap{max-width:960px;margin:0 auto;padding:0 16px 40px}
-.bchrome{border-radius:13px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,0.11)}
-.bbar{background:#1E1E1E;padding:9px 16px;display:flex;align-items:center;gap:12px}
-.bdots{display:flex;gap:6px}
-.bdots span{width:10px;height:10px;border-radius:50%}
-.bdots span:nth-child(1){background:#FF5F57}
-.bdots span:nth-child(2){background:#FEBC2E}
-.bdots span:nth-child(3){background:#28C840}
-.burl{flex:1;background:#2D2D2D;border-radius:5px;padding:4px 11px;font-size:11px;color:#777;font-family:monospace}
+    .btn-kmtc:hover { transform: translate(3px, 3px); box-shadow: 4px 4px 0 var(--kmtc-yellow); background: var(--kmtc-purple); color: #fff; }
 
-/* site header */
-.s-head{
-  background:var(--forest-deep);display:flex;align-items:center;
-  justify-content:space-between;padding:13px 24px;gap:10px;flex-wrap:nowrap;
-}
-.s-logo{display:flex;align-items:center;gap:9px;flex-shrink:0}
-.s-cross{width:20px;height:20px;position:relative;flex-shrink:0}
-.s-cross::before,.s-cross::after{content:'';position:absolute;background:var(--amber-warm);border-radius:1px}
-.s-cross::before{width:2.5px;height:100%;left:50%;transform:translateX(-50%)}
-.s-cross::after{height:2.5px;width:65%;top:33%;left:17%}
-.s-logotext{font-family:var(--font-label);font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--champagne)}
-.s-links{display:flex;gap:1px}
-.s-links a{
-  font-family:var(--font-label);font-size:10px;font-weight:600;letter-spacing:.8px;
-  color:rgba(200,220,245,0.5);text-decoration:none;padding:5px 9px;border-radius:4px;
-}
-.s-links a.on,.s-links a:hover{color:var(--champagne);background:rgba(255,255,255,0.05)}
-@media(max-width:500px){.s-links{display:none}}
-.give-cta{
-  background:var(--forest-rich);color:white;
-  font-family:var(--font-label);font-size:10px;font-weight:700;letter-spacing:1px;
-  padding:6px 14px;border-radius:20px;white-space:nowrap;flex-shrink:0;
-}
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      align-items: stretch;
+      border-bottom: 10px solid var(--kmtc-black);
+    }
 
-/* hero */
-.hero{
-  background:var(--forest-dark);min-height:250px;
-  display:flex;align-items:center;justify-content:center;
-  padding:40px 24px;position:relative;overflow:hidden;
-}
-.hero::before{
-  content:'';position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse at 20% 60%,rgba(27,117,187,0.18) 0%,transparent 55%),
-    radial-gradient(ellipse at 80% 30%,rgba(27,117,187,0.12) 0%,transparent 45%),
-    linear-gradient(135deg,var(--forest-deep) 0%,#0C1E35 100%);
-}
-.hero::after{
-  content:'';position:absolute;right:0;top:0;bottom:0;width:35%;
-  background:repeating-linear-gradient(-45deg,transparent,transparent 28px,rgba(27,117,187,0.04) 28px,rgba(27,117,187,0.04) 29px);
-  pointer-events:none;
-}
-.h-inner{position:relative;z-index:2;text-align:center;max-width:480px}
-.h-eye{
-  font-family:var(--font-label);font-size:10px;letter-spacing:3px;font-weight:600;
-  color:var(--sage-light);display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;
-}
-.h-eye::before,.h-eye::after{content:'';display:block;width:22px;height:1px;background:var(--sage)}
-.h-title{
-  font-family:var(--font-display);font-size:clamp(28px,5vw,42px);font-weight:700;
-  color:var(--champagne);line-height:1.15;margin-bottom:12px;
-}
-.h-title em{font-style:italic;color:var(--amber-warm)}
-.h-sub{font-size:12.5px;color:rgba(211,197,168,0.65);line-height:1.75;margin-bottom:24px}
-.h-btns{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
-.bc{background:var(--amber);color:white;font-family:var(--font-label);font-size:10px;font-weight:700;letter-spacing:1px;padding:10px 20px;border-radius:4px}
-.bg{border:1.5px solid rgba(27,117,187,0.35);color:rgba(200,220,245,0.8);font-family:var(--font-label);font-size:10px;font-weight:600;letter-spacing:.8px;padding:9px 20px;border-radius:4px}
-.bl{background:#C4442A;color:white;font-family:var(--font-label);font-size:10px;font-weight:700;letter-spacing:1px;padding:10px 16px;border-radius:4px;display:flex;align-items:center;gap:6px}
-.lpulse{width:7px;height:7px;border-radius:50%;background:white;animation:blink 1.2s infinite}
-@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.85)}}
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+    }
 
-/* strips */
-.strip{background:var(--warm-white);padding:22px 22px}
-.strip.alt{background:var(--ivory)}
-.strip-ttl{font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--forest-mid);margin-bottom:14px}
-.strip-ttl span{color:var(--amber);font-style:italic}
+    .hero-copy {
+      padding: clamp(2rem, 6vw, 6rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--kmtc-yellow);
+      position: relative;
+      overflow: hidden;
+    }
 
-.sc-scroll{display:flex;gap:11px;overflow-x:auto;padding-bottom:5px;scrollbar-width:none}
-.sc-scroll::-webkit-scrollbar{display:none}
-.sc{background:var(--ivory);border:1px solid var(--parchment);border-radius:9px;overflow:hidden;min-width:152px;flex-shrink:0;transition:transform .2s}
-.sc:hover{transform:translateY(-2px)}
-.sc-th{height:86px;display:flex;align-items:center;justify-content:center;position:relative}
-.sc-play{width:32px;height:32px;border-radius:50%;background:rgba(27,117,187,0.88);display:flex;align-items:center;justify-content:center;color:white;font-size:11px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
-.sc-new{position:absolute;top:7px;right:7px;background:var(--amber);color:white;font-family:var(--font-label);font-size:8px;font-weight:700;letter-spacing:1px;padding:2px 7px;border-radius:20px}
-.sc-inf{padding:9px 11px}
-.sc-ttl{font-size:11px;font-weight:600;color:var(--ink);margin-bottom:3px;line-height:1.4}
-.sc-mt{font-family:var(--font-label);font-size:9px;letter-spacing:.5px;color:var(--stone)}
+    .hero-copy::after {
+      content: "";
+      width: 240px;
+      height: 240px;
+      border: 34px solid var(--kmtc-orange);
+      border-radius: 50%;
+      position: absolute;
+      right: -90px;
+      top: -60px;
+    }
 
-.ev-scroll{display:flex;gap:11px;overflow-x:auto;padding-bottom:5px;scrollbar-width:none}
-.ev-scroll::-webkit-scrollbar{display:none}
-.ev{background:var(--forest-dark);border-radius:9px;padding:14px;min-width:148px;flex-shrink:0;position:relative;overflow:hidden;border:1px solid rgba(27,117,187,0.15)}
-.ev::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber-warm)}
-.ev-d{font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--amber-warm);line-height:1}
-.ev-m{font-family:var(--font-label);font-size:9px;letter-spacing:2px;color:var(--sage-light);margin-bottom:9px}
-.ev-n{font-size:11.5px;font-weight:600;color:var(--champagne);margin-bottom:3px;line-height:1.4}
-.ev-t{font-size:10px;color:rgba(120,154,190,.7)}
+    .eyebrow {
+      width: max-content;
+      padding: .45rem .8rem;
+      background: var(--kmtc-green);
+      color: #fff;
+      font-family: "Oswald", sans-serif;
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      transform: rotate(-1.5deg);
+    }
 
-.give-bar{
-  background:linear-gradient(135deg,var(--forest-deep),#0D2045);
-  padding:20px 22px;display:flex;align-items:center;justify-content:space-between;
-  gap:14px;flex-wrap:wrap;border-top:1px solid rgba(27,117,187,.18);
-}
-.give-bar h4{font-family:var(--font-display);font-size:15px;color:var(--champagne)}
-.give-bar p{font-size:12px;color:rgba(120,154,190,.7);margin-top:2px}
-.give-btns{display:flex;gap:9px;flex-shrink:0}
+    h1 {
+      font-family: "Anton", sans-serif;
+      font-size: clamp(4rem, 11vw, 9.5rem);
+      line-height: .83;
+      letter-spacing: -0.055em;
+      margin: 1.3rem 0 1rem;
+      text-transform: uppercase;
+    }
 
-.cmap{background:var(--warm-white);border:1px solid var(--parchment);border-radius:12px;padding:20px;margin-top:18px}
-.cmap h4{font-family:var(--font-display);font-size:17px;color:var(--forest-mid);margin-bottom:14px}
-.cm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px}
-.cm-item{background:var(--ivory);border:1px solid var(--parchment);border-radius:7px;padding:11px}
-.cm-lbl{font-family:var(--font-label);font-size:9.5px;font-weight:700;letter-spacing:1.5px;color:var(--sage);margin-bottom:3px}
-.cm-d{font-size:11px;color:var(--brown-gray);line-height:1.5}
+    .topic {
+      font-size: clamp(1.8rem, 4vw, 4.6rem);
+      line-height: 1.02;
+      font-style: italic;
+      font-weight: 900;
+      max-width: 850px;
+    }
 
-/* ═══════════════ TAB 3 — DASHBOARD ═══════════════ */
-.dbwrap{max-width:960px;margin:0 auto;padding:0 16px 40px}
-.dbchrome{border-radius:13px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.11)}
-.d-layout{display:grid;grid-template-columns:205px 1fr;height:560px;background:var(--ivory)}
-@media(max-width:680px){
-  .d-layout{grid-template-columns:1fr;height:auto}
-  .d-sidebar{display:none}
-}
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .8rem;
+      margin: 2rem 0;
+    }
 
-.d-sidebar{background:var(--forest-deep);display:flex;flex-direction:column;overflow:hidden;flex-shrink:0}
-.d-slogo{padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:9px}
-.d-slogotext{font-family:var(--font-label);font-size:11px;font-weight:700;letter-spacing:2px;color:var(--champagne)}
-.d-slogotext small{display:block;font-size:9px;color:var(--stone);letter-spacing:.8px;margin-top:1px}
-.d-menu{padding:12px 0;flex:1;overflow-y:auto;scrollbar-width:none}
-.d-menu::-webkit-scrollbar{display:none}
-.d-sec{font-family:var(--font-label);font-size:8.5px;font-weight:700;letter-spacing:2.5px;color:rgba(120,154,190,.35);padding:9px 18px 3px;text-transform:uppercase}
-.d-item{display:flex;align-items:center;gap:9px;padding:8px 18px;font-family:var(--font-body);font-size:12px;font-weight:500;color:rgba(200,220,245,.45);cursor:pointer;transition:all .15s;position:relative}
-.d-item:hover{background:rgba(255,255,255,.06);color:var(--champagne)}
-.d-item.on{background:rgba(27,117,187,.15);color:var(--forest-rich);border-right:2px solid var(--forest-rich)}
-.d-ic{font-size:13px;width:18px;text-align:center;flex-shrink:0}
-.d-badge{margin-left:auto;background:var(--amber-warm);color:white;font-family:var(--font-label);font-size:8.5px;font-weight:700;padding:1px 7px;border-radius:20px}
-.d-foot{padding:13px 18px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:9px}
-.d-avt{width:29px;height:29px;border-radius:50%;background:linear-gradient(135deg,var(--amber-warm),var(--forest-mid));display:flex;align-items:center;justify-content:center;font-family:var(--font-label);font-size:10px;font-weight:700;color:white;flex-shrink:0}
-.d-uname{font-size:11px;color:var(--champagne);font-weight:600}
-.d-urole{font-size:9px;color:var(--stone)}
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .8rem 1rem;
+      background: #fff;
+      border: 2px solid var(--kmtc-black);
+      font-weight: 900;
+      text-transform: uppercase;
+      box-shadow: 5px 5px 0 var(--kmtc-black);
+    }
 
-.d-main{display:flex;flex-direction:column;overflow:hidden;background:var(--ivory)}
-.d-topbar{background:var(--warm-white);padding:13px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--parchment);gap:10px;flex-shrink:0}
-.d-ttl{font-size:14px;font-weight:600;color:var(--forest-mid)}
-.d-sub{font-family:var(--font-label);font-size:9.5px;letter-spacing:.5px;color:var(--stone);margin-top:1px}
-.d-tr{display:flex;align-items:center;gap:9px}
-.d-upbtn{background:var(--forest-rich);color:white;font-family:var(--font-label);font-size:10px;font-weight:700;letter-spacing:.8px;padding:7px 13px;border-radius:6px;display:flex;align-items:center;gap:4px;white-space:nowrap}
+    .hero-art {
+      min-height: 660px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      background: var(--kmtc-black);
+      border-left: 10px solid var(--kmtc-black);
+    }
 
-.d-content{padding:16px 18px;overflow-y:auto;flex:1;scrollbar-width:thin;scrollbar-color:var(--parchment) transparent}
+    .tile {
+      position: relative;
+      overflow: hidden;
+      min-height: 300px;
+      border: 5px solid var(--kmtc-black);
+    }
 
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:16px}
-@media(max-width:480px){.stats-row{grid-template-columns:1fr 1fr}}
-.scard{background:var(--warm-white);border:1px solid var(--parchment);border-radius:9px;padding:13px 15px;position:relative;overflow:hidden}
-.scard::after{content:attr(data-i);position:absolute;right:9px;top:9px;font-size:19px;opacity:.12}
-.slbl{font-family:var(--font-label);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone);margin-bottom:5px}
-.sval{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--forest-mid);line-height:1}
-.schg{font-size:10px;margin-top:4px}
-.schg.up{color:var(--success)}
-.schg.ne{color:var(--stone)}
+    .tile.purple { background: var(--kmtc-purple); color: #fff; }
+    .tile.orange { background: var(--kmtc-orange); }
+    .tile.pink { background: var(--kmtc-pink); }
+    .tile.dark { background: #1d1d1d; color: #fff; }
 
-.wgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-@media(max-width:480px){.wgrid{grid-template-columns:1fr}}
-.widget{background:var(--warm-white);border:1px solid var(--parchment);border-radius:9px;padding:15px}
-.whead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.wttl{font-size:12px;font-weight:600;color:var(--forest-mid)}
-.wact{font-family:var(--font-label);font-size:10px;color:var(--sage);letter-spacing:.5px;cursor:pointer}
+    .speaker-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(1) contrast(1.18);
+      mix-blend-mode: luminosity;
+      opacity: .88;
+    }
 
-.sr{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--parchment)}
-.sr:last-child{border-bottom:none}
-.sm{width:38px;height:28px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;color:white;flex-shrink:0}
-.srt{font-size:11px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.srm{font-family:var(--font-label);font-size:9px;letter-spacing:.3px;color:var(--stone)}
-.srv{font-size:10px;color:var(--stone);white-space:nowrap}
+    .name-tag {
+      position: absolute;
+      left: 1.2rem;
+      bottom: 1.2rem;
+      background: rgba(244,244,244,.92);
+      color: var(--kmtc-black);
+      padding: .7rem .9rem;
+      font-family: "Oswald", sans-serif;
+      text-transform: uppercase;
+      font-size: .95rem;
+      line-height: 1.05;
+      z-index: 2;
+    }
 
-.chart{display:flex;align-items:flex-end;gap:5px;height:76px;border-bottom:1px solid var(--parchment);margin-bottom:7px;padding-bottom:2px}
-.bcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px}
-.bfill{width:100%;border-radius:3px 3px 0 0;background:linear-gradient(180deg,var(--sage),var(--forest-mid));cursor:pointer;transition:opacity .15s}
-.bfill:hover{opacity:.75}
-.bfill.hi{background:linear-gradient(180deg,var(--amber-warm),var(--amber))}
-.blbl{font-family:var(--font-label);font-size:8px;color:var(--stone)}
-.csub{font-size:11px;color:var(--stone);text-align:center}
+    .name-tag strong { font-weight: 900; font-family: "Inter", sans-serif; }
 
-.dr{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--parchment);font-size:11px}
-.dr:last-child{border-bottom:none}
-.dl{display:flex;align-items:center;gap:8px}
-.da{width:25px;height:25px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-label);font-size:9px;font-weight:700;color:white;flex-shrink:0}
-.dn{font-weight:600;color:var(--ink)}
-.dt{font-size:10px;color:var(--stone)}
-.damt{font-weight:700;color:var(--success);white-space:nowrap}
-.wfull{grid-column:1/-1}
+    .shape-half {
+      position: absolute;
+      width: 78%;
+      height: 38%;
+      left: 11%;
+      border-radius: 999px 999px 0 0;
+      background: var(--kmtc-purple);
+    }
+    .shape-half.one { top: 22%; }
+    .shape-half.two { top: 46%; transform: rotate(180deg); }
+    .shape-half.three { top: 67%; }
 
-/* ═══════════════ TAB 4 — SETUP ═══════════════ */
-.swrap{max-width:800px;margin:0 auto;padding:0 16px 56px}
-.code{
-  background:#080F1E;border-radius:12px;padding:22px 26px;
-  font-family:'Courier New',monospace;font-size:12px;line-height:1.85;
-  color:#d0c8b0;box-shadow:var(--shadow-md);margin-bottom:18px;
-  overflow-x:auto;border:1px solid rgba(27,117,187,.15);
-}
-.stag{font-family:var(--font-label);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--sage-light);display:block;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(27,117,187,.13)}
-.cc{color:#89c4e1}.ch{color:#e8a85a}.cok{color:#7dbf99}.cmt{color:#5a7060}
-.cdir{color:#7dbf99;font-weight:bold}.cfile{color:#d0c8b0}
+    .eye-icon {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 84%;
+      height: 58%;
+      border: 12px solid #20205e;
+      border-radius: 80% 5% 80% 5%;
+      transform: rotate(-45deg);
+    }
+    .eye-icon::after {
+      content: "";
+      position: absolute;
+      width: 32%;
+      height: 32%;
+      background: var(--kmtc-deep-purple);
+      border-radius: 50%;
+      left: 34%;
+      top: 34%;
+    }
 
-.rmap{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:28px}
-@media(max-width:620px){.rmap{grid-template-columns:1fr 1fr}}
-@media(max-width:380px){.rmap{grid-template-columns:1fr}}
-.pcard{background:var(--warm-white);border:1px solid var(--parchment);border-radius:11px;padding:18px;position:relative;overflow:hidden}
-.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--sage),transparent)}
-.pcard.cur::before{background:linear-gradient(90deg,var(--amber-warm),var(--amber))}
-.pnum{font-family:var(--font-display);font-size:40px;font-weight:700;color:var(--parchment);line-height:1;position:absolute;right:12px;top:8px}
-.ptag{font-family:var(--font-label);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;display:inline-block;padding:3px 8px;border-radius:20px;margin-bottom:7px}
-.ptnow{background:var(--amber-pale);color:var(--amber)}
-.ptnxt{background:var(--sage-pale);color:var(--forest-rich)}
-.ptpln{background:var(--parchment);color:var(--brown-gray)}
-.ptadv{background:var(--forest-dark);color:var(--sage-light)}
-.pcard h4{font-size:13.5px;font-weight:700;color:var(--forest-mid);margin-bottom:9px}
-.pcard ul{list-style:none}
-.pcard ul li{font-size:11.5px;color:var(--brown-gray);padding:2.5px 0;display:flex;align-items:flex-start;gap:5px;line-height:1.5}
-.pcard ul li::before{content:'→';color:var(--sage);flex-shrink:0;font-size:10px;margin-top:2px}
-</style>
+    .starburst {
+      position: absolute;
+      width: 82px;
+      height: 82px;
+      right: 2rem;
+      bottom: 2rem;
+      background: repeating-conic-gradient(from 0deg, var(--kmtc-yellow) 0deg 10deg, transparent 10deg 20deg);
+      border-radius: 50%;
+      animation: spin 10s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    section { padding: clamp(4rem, 8vw, 7rem) 0; }
+
+    .section-title {
+      font-family: "Anton", sans-serif;
+      font-size: clamp(2.8rem, 7vw, 6rem);
+      line-height: .9;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section-lead { font-size: 1.15rem; max-width: 760px; color: rgba(20,20,20,.74); }
+
+    .speaker-card {
+      height: 100%;
+      background: #fff;
+      border: 3px solid var(--kmtc-black);
+      box-shadow: 10px 10px 0 var(--kmtc-black);
+      overflow: hidden;
+      transition: .25s ease;
+    }
+    .speaker-card:hover { transform: translateY(-8px); box-shadow: 14px 14px 0 var(--kmtc-purple); }
+
+    .speaker-photo {
+      position: relative;
+      height: 380px;
+      background: #222;
+      overflow: hidden;
+    }
+    .speaker-photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.2); }
+    .speaker-role {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      padding: .45rem .75rem;
+      background: var(--kmtc-yellow);
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: .8rem;
+    }
+    .speaker-body { padding: 1.5rem; }
+    .speaker-body h3 { font-family: "Oswald", sans-serif; text-transform: uppercase; font-size: 2rem; margin-bottom: .4rem; }
+    .speaker-body p { color: rgba(20,20,20,.72); }
+
+    .register-panel {
+      background: var(--kmtc-black);
+      color: #fff;
+      border: 8px solid var(--kmtc-black);
+      box-shadow: 16px 16px 0 var(--kmtc-orange);
+    }
+
+    .form-side { background: #fff; color: var(--kmtc-black); padding: clamp(1.5rem, 4vw, 3rem); }
+    .info-side { padding: clamp(1.5rem, 4vw, 3rem); background: var(--kmtc-purple); position: relative; overflow: hidden; }
+
+    .info-side::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -120px;
+      bottom: -120px;
+      border-radius: 50%;
+      background: var(--kmtc-pink);
+    }
+
+    .form-control, .form-select {
+      border-radius: 0;
+      border: 2px solid var(--kmtc-black);
+      padding: .95rem 1rem;
+      font-weight: 700;
+    }
+    .form-control:focus, .form-select:focus { border-color: var(--kmtc-purple); box-shadow: 0 0 0 .25rem rgba(127,0,232,.16); }
+
+    .agenda-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.22);
+      position: relative;
+      z-index: 1;
+    }
+    .agenda-icon {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      display: grid;
+      place-items: center;
+      background: var(--kmtc-yellow);
+      color: var(--kmtc-black);
+      border-radius: 50%;
+    }
+
+    .toast-box {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 9999;
+      display: none;
+      max-width: 380px;
+      background: var(--kmtc-green);
+      color: #fff;
+      border: 3px solid var(--kmtc-black);
+      box-shadow: 8px 8px 0 var(--kmtc-black);
+      padding: 1rem;
+      font-weight: 800;
+    }
+
+    footer { background: var(--kmtc-black); color: #fff; padding: 2rem 0; }
+
+    @media (max-width: 991px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-art { min-height: 720px; border-left: 0; border-top: 10px solid var(--kmtc-black); }
+    }
+
+    @media (max-width: 575px) {
+      .hero-art { grid-template-columns: 1fr; grid-template-rows: repeat(4, 260px); min-height: auto; }
+      .meta-chip { width: 100%; }
+      .speaker-photo { height: 310px; }
+    }
+  </style>
 </head>
 <body>
+  <div class="brand-bg"></div>
+  <div class="top-strip"></div>
 
-<!-- ═════════ TOP NAV ═════════ -->
-<nav class="top-nav">
-  <div class="nav-inner">
-    <div class="nav-brand"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
-  <rect x="2" y="4" width="2.5" height="12" rx="1" fill="#3DAE45"/>
-  <rect x="7.75" y="2" width="2.5" height="14" rx="1" fill="#1B75BB"/>
-  <rect x="13.5" y="4" width="2.5" height="12" rx="1" fill="#1B75BB"/>
-  <path d="M3 10 Q9 4 15 10" stroke="#3DAE45" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-</svg>BRIDGEWAY</div>
-    <button class="tab-btn on"  onclick="go('arch',this)">📐 Architecture</button>
-    <button class="tab-btn"     onclick="go('home',this)">🌐 Homepage</button>
-    <button class="tab-btn"     onclick="go('dash',this)">⚙️ Dashboard</button>
-    <button class="tab-btn"     onclick="go('setup',this)">📁 Setup</button>
-  </div>
-</nav>
-
-<!-- ═════════ TAB 1 — ARCHITECTURE ═════════ -->
-<div id="p-arch" class="tab-panel show">
-  <div class="sec-hd">
-    <span class="eyebrow">Phase 1 — Foundation</span>
-    <h2>System <em>Architecture</em></h2>
-    <p>Every layer of the SaaS platform explained — from browser to database</p>
-  </div>
-  <div class="arch-wrap">
-    <div class="arch-grid">
-
-      <div class="a-card">
-        <div class="a-ico">🖥️</div>
-        <h3>Frontend Layer</h3>
-        <p>The user-facing app — public church website plus the protected admin dashboard. Built for speed, SEO, and a clean feel that non-technical staff can actually use.</p>
-        <span class="pill ps">Next.js 14 App Router</span>
-        <span class="pill ps">Tailwind CSS</span>
-        <span class="pill ps">ShadCN UI</span>
-        <span class="pill pn">React Query</span>
-        <span class="pill pn">Framer Motion</span>
-      </div>
-
-      <div class="a-card">
-        <div class="a-ico">⚙️</div>
-        <h3>Backend Layer</h3>
-        <p>API routes inside Next.js handle all server logic — authentication, data reads/writes, file upload processing, and payment webhook handling. Zero separate server needed.</p>
-        <span class="pill pn">Next.js API Routes</span>
-        <span class="pill pn">Node.js Runtime</span>
-        <span class="pill ps">Prisma ORM</span>
-        <span class="pill pa">JWT / NextAuth</span>
-        <span class="pill pn">Zod Validation</span>
-      </div>
-
-      <div class="a-card">
-        <div class="a-ico">🗄️</div>
-        <h3>Database Layer</h3>
-        <p>PostgreSQL on Neon cloud stores all relational data. Prisma gives type-safe querying. Every record carries a <code style="font-size:11px;background:var(--sage-pale);padding:1px 5px;border-radius:3px;color:var(--forest-rich)">tenantId</code> for full church data isolation.</p>
-        <span class="pill pa">PostgreSQL</span>
-        <span class="pill pa">Prisma ORM</span>
-        <span class="pill pn">Neon Cloud DB</span>
-        <span class="pill pn">Multi-tenant Schema</span>
-      </div>
-
-      <div class="a-card">
-        <div class="a-ico">☁️</div>
-        <h3>Media & Streaming</h3>
-        <p>Cloudinary handles every video and audio sermon upload, auto-generates thumbnails, and delivers everything via global CDN — no separate media server required.</p>
-        <span class="pill ps">Cloudinary CDN</span>
-        <span class="pill pn">Video Upload API</span>
-        <span class="pill pn">Audio Streaming</span>
-        <span class="pill pn">Auto Thumbnails</span>
-      </div>
-
-      <div class="flow-card">
-        <h3>🔗 How All Layers Connect</h3>
-        <div class="f-row">
-          <div class="f-box al">👤 Member<br><small>Public Site</small></div>
-          <div class="f-arr">→</div>
-          <div class="f-box">Next.js<br><small>App Router</small></div>
-          <div class="f-arr">→</div>
-          <div class="f-box">API Routes<br><small>/api/*</small></div>
-          <div class="f-arr">→</div>
-          <div class="f-box">Prisma<br><small>Type-safe</small></div>
-          <div class="f-arr">→</div>
-          <div class="f-box gl">PostgreSQL<br><small>Neon Cloud</small></div>
-        </div>
-        <div class="f-row">
-          <div class="f-box al">👨‍💼 Admin<br><small>Dashboard</small></div>
-          <div class="f-arr">→</div>
-          <div class="f-box">NextAuth<br><small>JWT Session</small></div>
-          <div class="f-arr">→</div>
-          <div class="f-box">Protected<br><small>API Routes</small></div>
-          <div class="f-arr">→</div>
-          <div class="f-box">Cloudinary<br><small>Upload</small></div>
-          <div class="f-arr">→</div>
-          <div class="f-box gl">Media CDN<br><small>Streaming</small></div>
-        </div>
-        <div class="f-row">
-          <div class="f-box al">💰 Donor<br><small>Checkout</small></div>
-          <div class="f-arr">→</div>
-          <div class="f-box">Paystack<br><small>Flutterwave</small></div>
-          <div class="f-arr">→</div>
-          <div class="f-box">Webhook<br><small>Handler</small></div>
-          <div class="f-arr">→</div>
-          <div class="f-box">DB Record<br><small>Donations</small></div>
-          <div class="f-arr">→</div>
-          <div class="f-box gl">Analytics<br><small>Dashboard</small></div>
-        </div>
-      </div>
-
-      <div class="tenant-card">
-        <h3>🏛️ Multi-Tenant SaaS Architecture</h3>
-        <p>Each church gets its own isolated data scope, subdomain, and admin panel. Phase 6 turns this into a fully white-label SaaS product under the BRIDGEWAY brand.</p>
-        <div class="t-boxes">
-          <div class="t-box"><div class="t-n">⛪ Bridgeway Gospel Centre</div><div class="t-u">bridgeway.gospelcentre.com</div><div class="t-tg">Own brand · Own admin · Own data</div></div>
-          <div class="t-box"><div class="t-n">🙌 Victory Church</div><div class="t-u">victory.gospelcentre.com</div><div class="t-tg">Own brand · Own admin · Own data</div></div>
-          <div class="t-box sp"><div class="t-n">👑 BRIDGEWAY Super Admin</div><div class="t-u">admin.gospelcentre.com</div><div class="t-tg">Manages all tenants · Billing</div></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- ═════════ TAB 2 — HOMEPAGE ═════════ -->
-<div id="p-home" class="tab-panel">
-  <div class="sec-hd">
-    <span class="eyebrow">Public Website</span>
-    <h2>Homepage <em>UI Layout</em></h2>
-    <p>Warm, organic, and conversion-focused — welcoming members and first-time visitors</p>
-  </div>
-  <div class="bwrap">
-    <div class="bchrome">
-      <div class="bbar">
-        <div class="bdots"><span></span><span></span><span></span></div>
-        <div class="burl">https://bridgeway.gospelcentre.com</div>
-      </div>
-
-      <div class="s-head">
-        <div class="s-logo">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
-  <rect x="2" y="5" width="3" height="14" rx="1.2" fill="#3DAE45"/>
-  <rect x="9.5" y="2" width="3" height="17" rx="1.2" fill="#E2EEF8"/>
-  <rect x="17" y="5" width="3" height="14" rx="1.2" fill="#E2EEF8"/>
-  <path d="M3.5 12 Q11 4 20 12" stroke="#3DAE45" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-</svg>
-          <div class="s-logotext">BRIDGEWAY GOSPEL CENTRE</div>
-        </div>
-        <div class="s-links">
-          <a href="#" class="on">Home</a><a href="#">Sermons</a>
-          <a href="#">Events</a><a href="#">Live</a><a href="#">About</a>
-        </div>
-        <div class="give-cta">✝ Give</div>
-      </div>
-
-      <div class="hero">
-        <div class="h-inner">
-          <div class="h-eye">Sunday Service · 10:00 AM</div>
-          <div class="h-title">Worship. Grow.<br><em>Transform.</em></div>
-          <p class="h-sub">Join thousands of believers experiencing God's presence every Sunday — online and in person.</p>
-          <div class="h-btns">
-            <div class="bc">📖 Watch Sermons</div>
-            <div class="bg">Learn More</div>
-            <div class="bl"><span class="lpulse"></span>Watch Live</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="strip">
-        <div class="strip-ttl">Recent <span>Messages</span></div>
-        <div class="sc-scroll">
-          <div class="sc"><div class="sc-th" style="background:linear-gradient(135deg,#134B8F,#071422)"><div class="sc-play">▶</div><div class="sc-new">NEW</div></div><div class="sc-inf"><div class="sc-ttl">Walking in Faith — Pt.3</div><div class="sc-mt">PASTOR JAMES · DEC 22</div></div></div>
-          <div class="sc"><div class="sc-th" style="background:linear-gradient(135deg,#0D2A50,#081630)"><div class="sc-play">▶</div></div><div class="sc-inf"><div class="sc-ttl">The Power of Prayer</div><div class="sc-mt">PASTOR JAMES · DEC 15</div></div></div>
-          <div class="sc"><div class="sc-th" style="background:linear-gradient(135deg,#1A3060,#0B1A38)"><div class="sc-play">▶</div></div><div class="sc-inf"><div class="sc-ttl">Grace Abounding</div><div class="sc-mt">MIN. SARAH · DEC 8</div></div></div>
-          <div class="sc"><div class="sc-th" style="background:linear-gradient(135deg,#0C2040,#071222)"><div class="sc-play">▶</div></div><div class="sc-inf"><div class="sc-ttl">God's Faithful Promise</div><div class="sc-mt">PASTOR JAMES · DEC 1</div></div></div>
-        </div>
-      </div>
-
-      <div class="strip alt">
-        <div class="strip-ttl">Upcoming <span>Events</span></div>
-        <div class="ev-scroll">
-          <div class="ev"><div class="ev-d">12</div><div class="ev-m">JAN</div><div class="ev-n">New Year Prayer Night</div><div class="ev-t">🕖 6:00 PM – 9:00 PM</div></div>
-          <div class="ev"><div class="ev-d">19</div><div class="ev-m">JAN</div><div class="ev-n">Youth Conference 2026</div><div class="ev-t">🕗 7:00 AM – 5:00 PM</div></div>
-          <div class="ev"><div class="ev-d">26</div><div class="ev-m">JAN</div><div class="ev-n">Marriage Enrichment</div><div class="ev-t">🕙 10:00 AM – 2:00 PM</div></div>
-          <div class="ev" style="border-color:rgba(77,153,112,.3)"><div class="ev-d" style="color:var(--sage-light)">02</div><div class="ev-m">FEB</div><div class="ev-n">Holy Communion Service</div><div class="ev-t">🕗 7:30 AM</div></div>
-        </div>
-      </div>
-
-      <div class="give-bar">
-        <div><h4>Support the Ministry ✝</h4><p>Your giving transforms lives and extends the Kingdom's reach.</p></div>
-        <div class="give-btns"><div class="bc">Give Now</div><div class="bg">Learn More</div></div>
+  <nav class="navbar navbar-expand-lg sticky-top py-3">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-3" href="#">
+        <span class="logo-mark">KMTC</span>
+        <span class="fw-black text-uppercase lh-sm">Kingdom Media<br />& Tech Confluence</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="#speakers">Speakers</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="btn btn-kmtc ms-lg-2" href="#register">Register Now</a></li>
+        </ul>
       </div>
     </div>
+  </nav>
 
-    <div class="cmap">
-      <h4>📋 Homepage Component Structure</h4>
-      <div class="cm-grid">
-        <div class="cm-item"><div class="cm-lbl">Navbar</div><div class="cm-d">Logo · Nav links · Give CTA</div></div>
-        <div class="cm-item"><div class="cm-lbl">Hero</div><div class="cm-d">Title · Subtitle · 3 action buttons</div></div>
-        <div class="cm-item"><div class="cm-lbl">Sermon Cards</div><div class="cm-d">Thumbnail · Title · Speaker · Play</div></div>
-        <div class="cm-item"><div class="cm-lbl">Events</div><div class="cm-d">Date · Name · Time · Register</div></div>
-        <div class="cm-item"><div class="cm-lbl">Donation Strip</div><div class="cm-d">CTA · Paystack/Flutterwave modal</div></div>
-        <div class="cm-item"><div class="cm-lbl">Footer</div><div class="cm-d">Links · Social · Address</div></div>
+  <header class="hero">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Presents · Webinar 1.0</span>
+        <h1>Technology,<br />AI & Work</h1>
+        <div class="topic">The Future of Work for Creatives, Kingdom Builders & Digital Professionals.</div>
+        <div class="hero-meta">
+          <span class="meta-chip"><i class="fa-solid fa-calendar-days"></i> Fri. 29th May, 2026</span>
+          <span class="meta-chip"><i class="fa-solid fa-clock"></i> 8:00 PM</span>
+          <span class="meta-chip"><i class="fa-brands fa-telegram"></i> Live on Telegram</span>
+        </div>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#register" class="btn btn-kmtc">Reserve Your Seat</a>
+          <a href="#speakers" class="btn btn-outline-dark rounded-0 fw-bold px-4 py-3 border-3">Meet Speakers</a>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
 
-<!-- ═════════ TAB 3 — DASHBOARD ═════════ -->
-<div id="p-dash" class="tab-panel">
-  <div class="sec-hd">
-    <span class="eyebrow">Admin Panel</span>
-    <h2>Dashboard <em>UI Design</em></h2>
-    <p>Clean management interface built for non-technical church administrators</p>
-  </div>
-  <div class="dbwrap">
-    <div class="dbchrome">
-      <div class="bbar">
-        <div class="bdots"><span></span><span></span><span></span></div>
-        <div class="burl">https://bridgeway.gospelcentre.com/admin/dashboard</div>
-      </div>
-      <div class="d-layout">
-
-        <div class="d-sidebar">
-          <div class="d-slogo">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
-  <rect x="2" y="4" width="2.5" height="12" rx="1" fill="#3DAE45"/>
-  <rect x="7.75" y="2" width="2.5" height="14" rx="1" fill="#1B75BB"/>
-  <rect x="13.5" y="4" width="2.5" height="12" rx="1" fill="#1B75BB"/>
-  <path d="M3 10 Q9 4 15 10" stroke="#3DAE45" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-</svg>
-            <div><div class="d-slogotext">BRIDGEWAY<small>Bridgeway Gospel Centre</small></div></div>
-          </div>
-          <div class="d-menu">
-            <div class="d-sec">Main</div>
-            <div class="d-item on"><span class="d-ic">📊</span>Dashboard</div>
-            <div class="d-item"><span class="d-ic">🎙️</span>Sermons<span class="d-badge">12</span></div>
-            <div class="d-item"><span class="d-ic">📅</span>Events</div>
-            <div class="d-item"><span class="d-ic">📡</span>Live Stream</div>
-            <div class="d-sec">Finance</div>
-            <div class="d-item"><span class="d-ic">💰</span>Donations</div>
-            <div class="d-item"><span class="d-ic">📈</span>Reports</div>
-            <div class="d-sec">Settings</div>
-            <div class="d-item"><span class="d-ic">👥</span>Users</div>
-            <div class="d-item"><span class="d-ic">🎨</span>Branding</div>
-            <div class="d-item"><span class="d-ic">⚙️</span>Settings</div>
-          </div>
-          <div class="d-foot">
-            <div class="d-avt">PA</div>
-            <div><div class="d-uname">Pastor Ade</div><div class="d-urole">Super Admin</div></div>
+      <div class="hero-art" aria-label="KMTC brand collage">
+        <div class="tile purple d-flex align-items-center justify-content-center">
+          <div class="text-center px-3">
+            <div class="display-2 fw-black" style="font-family: Anton; letter-spacing:-.06em;">KMTC</div>
+            <small class="text-uppercase">Kingdom Media and Tech Confluence</small>
           </div>
         </div>
+        <div class="tile dark">
+          <img class="speaker-img" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=900&q=80" alt="Moses Olaosebikan" />
+          <div class="name-tag">Moses <strong>Olaosebikan</strong><br />Cinematographer / Video Editor</div>
+        </div>
+        <div class="tile orange">
+          <span class="shape-half one"></span><span class="shape-half two"></span><span class="shape-half three"></span>
+        </div>
+        <div class="tile pink">
+          <div class="eye-icon"></div>
+          <div class="starburst"></div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-        <div class="d-main">
-          <div class="d-topbar">
-            <div><div class="d-ttl">Good Morning, Pastor 🙏</div><div class="d-sub">Thursday, March 26 · Bridgeway Gospel Centre</div></div>
-            <div class="d-tr"><div class="d-upbtn">+ Upload Sermon</div><div class="d-avt">PA</div></div>
+  <main>
+    <section id="about">
+      <div class="container">
+        <div class="row align-items-end g-4">
+          <div class="col-lg-7">
+            <span class="eyebrow">About the Webinar</span>
+            <h2 class="section-title mt-4">Learn the shift.<br />Lead the future.</h2>
+            <p class="section-lead">KMTC Webinar 1.0 is designed to help professionals, creatives and ministry-minded innovators understand how technology and AI are reshaping work, productivity, storytelling and digital influence.</p>
           </div>
-          <div class="d-content">
-            <div class="stats-row">
-              <div class="scard" data-i="🎙️"><div class="slbl">Sermons</div><div class="sval">147</div><div class="schg up">↑ +3 this week</div></div>
-              <div class="scard" data-i="👁️"><div class="slbl">Views</div><div class="sval">24.8K</div><div class="schg up">↑ +12% month</div></div>
-              <div class="scard" data-i="💰"><div class="slbl">Donations</div><div class="sval">₦1.2M</div><div class="schg up">↑ +8% month</div></div>
-              <div class="scard" data-i="📅"><div class="slbl">Events</div><div class="sval">5</div><div class="schg ne">Next: Jan 12</div></div>
+          <div class="col-lg-5">
+            <div class="p-4 bg-white border border-3 border-dark shadow-sm">
+              <h4 class="fw-black text-uppercase">What you will gain</h4>
+              <ul class="list-unstyled mt-3 mb-0">
+                <li class="mb-3"><i class="fa-solid fa-bolt text-warning me-2"></i> Practical AI tools for daily work</li>
+                <li class="mb-3"><i class="fa-solid fa-video text-danger me-2"></i> Media and creative workflow insights</li>
+                <li class="mb-3"><i class="fa-solid fa-layer-group text-success me-2"></i> Design, storytelling and brand clarity</li>
+                <li><i class="fa-brands fa-telegram text-primary me-2"></i> Live community learning on Telegram</li>
+              </ul>
             </div>
-            <div class="wgrid">
-              <div class="widget">
-                <div class="whead"><div class="wttl">Recent Sermons</div><div class="wact">View all →</div></div>
-                <div class="sr"><div class="sm" style="background:linear-gradient(135deg,#1B75BB,#071422)">▶</div><div style="flex:1;overflow:hidden"><div class="srt">Walking in Faith — Pt. 3</div><div class="srm">Dec 22 · Video + Audio</div></div><div class="srv">1.2K</div></div>
-                <div class="sr"><div class="sm" style="background:linear-gradient(135deg,#1B5EA0,#0C2040)">▶</div><div style="flex:1;overflow:hidden"><div class="srt">The Power of Prayer</div><div class="srm">Dec 15 · Video</div></div><div class="srv">876</div></div>
-                <div class="sr"><div class="sm" style="background:linear-gradient(135deg,#0C2A40,#071830)">▶</div><div style="flex:1;overflow:hidden"><div class="srt">Grace Abounding</div><div class="srm">Dec 8 · Audio only</div></div><div class="srv">542</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="speakers" class="pt-0">
+      <div class="container">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-5">
+          <div>
+            <span class="eyebrow">Speakers</span>
+            <h2 class="section-title mt-4 mb-0">Meet the voices.</h2>
+          </div>
+          <p class="section-lead mb-0">Experienced creatives and digital professionals sharing practical knowledge on technology, AI and the future of work.</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-xl-4">
+            <article class="speaker-card">
+              <div class="speaker-photo">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=900&q=80" alt="Moses Olaosebikan" />
+                <span class="speaker-role">Speaker</span>
               </div>
-              <div class="widget">
-                <div class="whead"><div class="wttl">Views This Week</div><div class="wact">Month ▾</div></div>
-                <div class="chart">
-                  <div class="bcol"><div class="bfill" style="height:43px"></div><div class="blbl">Mon</div></div>
-                  <div class="bcol"><div class="bfill" style="height:66px"></div><div class="blbl">Tue</div></div>
-                  <div class="bcol"><div class="bfill" style="height:50px"></div><div class="blbl">Wed</div></div>
-                  <div class="bcol"><div class="bfill hi" style="height:76px"></div><div class="blbl">Thu</div></div>
-                  <div class="bcol"><div class="bfill" style="height:58px"></div><div class="blbl">Fri</div></div>
-                  <div class="bcol"><div class="bfill" style="height:72px"></div><div class="blbl">Sat</div></div>
-                  <div class="bcol"><div class="bfill hi" style="height:76px"></div><div class="blbl">Sun</div></div>
+              <div class="speaker-body">
+                <h3>Moses Olaosebikan</h3>
+                <p class="fw-bold text-uppercase mb-2">Cinematographer / Video Editor</p>
+                <p>Moses brings visual storytelling experience to the conversation, helping attendees understand how technology and AI can improve content production, editing workflows and media delivery.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-xl-4">
+            <article class="speaker-card">
+              <div class="speaker-photo">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80" alt="Emmanuel Akindoyin" />
+                <span class="speaker-role">Speaker</span>
+              </div>
+              <div class="speaker-body">
+                <h3>Emmanuel Akindoyin</h3>
+                <p class="fw-bold text-uppercase mb-2">Creative Designer</p>
+                <p>Emmanuel will unpack how designers and creatives can remain relevant, build sharper brands and use emerging tools to work faster without losing originality.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-xl-4">
+            <article class="speaker-card">
+              <div class="speaker-photo">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80" alt="John Fatile" />
+                <span class="speaker-role">Host</span>
+              </div>
+              <div class="speaker-body">
+                <h3>John Fatile</h3>
+                <p class="fw-bold text-uppercase mb-2">Host</p>
+                <p>John will guide the session, connect the major ideas and facilitate a practical conversation around opportunity, skill growth and the future of work.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="register">
+      <div class="container">
+        <div class="register-panel">
+          <div class="row g-0">
+            <div class="col-lg-6 info-side">
+              <span class="eyebrow bg-warning text-dark">Free Registration</span>
+              <h2 class="section-title mt-4">Secure your spot.</h2>
+              <p class="fs-5 position-relative" style="z-index:1;">Join KMTC for an insightful live Telegram webinar on Technology, AI & The Future of Work.</p>
+              <div class="mt-4">
+                <div class="agenda-item">
+                  <span class="agenda-icon"><i class="fa-solid fa-robot"></i></span>
+                  <div><strong>AI for productivity</strong><br /><span class="opacity-75">Understand useful tools and smarter workflows.</span></div>
                 </div>
-                <div class="csub">3,584 total views this week</div>
+                <div class="agenda-item">
+                  <span class="agenda-icon"><i class="fa-solid fa-briefcase"></i></span>
+                  <div><strong>Future-proofing your skillset</strong><br /><span class="opacity-75">Prepare for the changing digital economy.</span></div>
+                </div>
+                <div class="agenda-item">
+                  <span class="agenda-icon"><i class="fa-solid fa-users"></i></span>
+                  <div><strong>Community access</strong><br /><span class="opacity-75">Get the Telegram link after registration.</span></div>
+                </div>
               </div>
-              <div class="widget wfull">
-                <div class="whead"><div class="wttl">Recent Donations</div><div class="wact">View all →</div></div>
-                <div class="dr"><div class="dl"><div class="da" style="background:linear-gradient(135deg,#1B75BB,#0f2d1a)">AO</div><div><div class="dn">Adaeze Okonkwo</div><div class="dt">2 hours ago · Tithe</div></div></div><div class="damt">₦50,000</div></div>
-                <div class="dr"><div class="dl"><div class="da" style="background:linear-gradient(135deg,#1B75BB,#0D3A7A)">BI</div><div><div class="dn">Babatunde Idowu</div><div class="dt">5 hours ago · Offering</div></div></div><div class="damt">₦25,000</div></div>
-                <div class="dr"><div class="dl"><div class="da" style="background:linear-gradient(135deg,#2FA840,#1A4880)">EN</div><div><div class="dn">Emeka Nwosu</div><div class="dt">Yesterday · Seeds</div></div></div><div class="damt">₦100,000</div></div>
-              </div>
+            </div>
+
+            <div class="col-lg-6 form-side">
+              <h3 class="fw-black text-uppercase mb-4">Registration Form</h3>
+              <form id="registrationForm" novalidate>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold">First Name</label>
+                    <input type="text" class="form-control" name="firstName" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" required />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label fw-bold">Email Address</label>
+                    <input type="email" class="form-control" name="email" required />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label fw-bold">Phone / WhatsApp Number</label>
+                    <input type="tel" class="form-control" name="phone" required />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label fw-bold">What best describes you?</label>
+                    <select class="form-select" name="category" required>
+                      <option value="">Choose one</option>
+                      <option>Creative / Designer</option>
+                      <option>Media Professional</option>
+                      <option>Tech Enthusiast</option>
+                      <option>Student</option>
+                      <option>Entrepreneur</option>
+                      <option>Ministry / Church Media Team</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label fw-bold">What do you want to learn?</label>
+                    <textarea class="form-control" rows="4" name="expectation" placeholder="Tell us briefly..."></textarea>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="updates" checked />
+                      <label class="form-check-label" for="updates">Send me webinar updates and Telegram access details.</label>
+                    </div>
+                  </div>
+                  <div class="col-12 d-grid mt-2">
+                    <button type="submit" class="btn btn-kmtc py-3">Complete Registration</button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+      <div>
+        <strong class="text-uppercase">KMTC Webinar 1.0</strong><br />Technology, AI & The Future of Work
+      </div>
+      <div class="d-flex gap-3 fs-4">
+        <a class="text-white" href="#"><i class="fa-brands fa-telegram"></i></a>
+        <a class="text-white" href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a class="text-white" href="#"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
     </div>
+  </footer>
+
+  <div class="toast-box" id="toastBox">
+    <i class="fa-solid fa-circle-check me-2"></i> Registration received! Telegram access details will be sent to your email/WhatsApp.
   </div>
-</div>
 
-<!-- ═════════ TAB 4 — SETUP ═════════ -->
-<div id="p-setup" class="tab-panel">
-  <div class="sec-hd">
-    <span class="eyebrow">Phase 1 — Setup</span>
-    <h2>Folder Structure &amp; <em>Installation</em></h2>
-    <p>Production-ready scaffold — ready to run from day one</p>
-  </div>
-  <div class="swrap">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const form = document.getElementById('registrationForm');
+    const toastBox = document.getElementById('toastBox');
 
-    <div class="code">
-<span style="color:var(--amber-warm);font-weight:bold">church-saas/</span>                     <span class="cmt"># Bridgeway Gospel Centre</span>
-├── <span class="cdir">src/</span>
-│   ├── <span class="cdir">app/</span>                          <span class="cmt"># Next.js App Router</span>
-│   │   ├── <span class="cdir">(public)/</span>                 <span class="cmt"># Public-facing pages</span>
-│   │   │   ├── <span class="cfile">page.tsx</span>              <span class="cmt"># / Homepage</span>
-│   │   │   ├── <span class="cdir">sermons/[id]/page.tsx</span> <span class="cmt"># Sermon player</span>
-│   │   │   ├── <span class="cdir">events/page.tsx</span>
-│   │   │   ├── <span class="cdir">live/page.tsx</span>
-│   │   │   └── <span class="cdir">give/page.tsx</span>
-│   │   ├── <span class="cdir">(admin)/</span>                  <span class="cmt"># Protected admin area</span>
-│   │   │   ├── <span class="cdir">dashboard/page.tsx</span>
-│   │   │   ├── <span class="cdir">sermons/upload/page.tsx</span>
-│   │   │   ├── <span class="cdir">events/page.tsx</span>
-│   │   │   ├── <span class="cdir">donations/page.tsx</span>
-│   │   │   └── <span class="cdir">users/page.tsx</span>
-│   │   ├── <span class="cdir">api/</span>                          <span class="cmt"># Backend API routes</span>
-│   │   │   ├── <span class="cdir">auth/[...nextauth]/route.ts</span>
-│   │   │   ├── <span class="cdir">sermons/route.ts</span>
-│   │   │   ├── <span class="cdir">events/route.ts</span>
-│   │   │   ├── <span class="cdir">donations/webhook/route.ts</span>
-│   │   │   └── <span class="cdir">upload/route.ts</span>
-│   │   └── <span class="cfile">layout.tsx</span>
-│   ├── <span class="cdir">components/</span>
-│   │   ├── <span class="cdir">ui/</span>                          <span class="cmt"># ShadCN components</span>
-│   │   ├── <span class="cdir">public/</span>                       <span class="cmt"># Navbar, Hero, SermonCard…</span>
-│   │   └── <span class="cdir">admin/</span>                        <span class="cmt"># Sidebar, StatsCard…</span>
-│   └── <span class="cdir">lib/</span>
-│       ├── <span class="cfile">prisma.ts</span>  <span class="cfile">auth.ts</span>  <span class="cfile">cloudinary.ts</span>  <span class="cfile">paystack.ts</span>
-├── <span class="cdir">prisma/</span>
-│   └── <span class="ch">schema.prisma</span>                     <span class="cmt"># DB schema</span>
-├── <span class="cfile">.env.local</span>  <span class="cfile">tailwind.config.ts</span>  <span class="cfile">next.config.ts</span>
-    </div>
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
 
-    <div class="code">
-      <span class="stag">Step 1 — Create Project</span>
-<span class="cc">npx create-next-app@latest church-saas \
-  --typescript --tailwind --eslint --app --src-dir
-cd church-saas</span>
-    </div>
+      if (!form.checkValidity()) {
+        form.classList.add('was-validated');
+        toastBox.style.display = 'block';
+        toastBox.style.background = '#ff5128';
+        toastBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-2"></i>Please fill all required fields correctly.';
+        setTimeout(() => toastBox.style.display = 'none', 3500);
+        return;
+      }
 
-    <div class="code">
-      <span class="stag">Step 2 — Install Dependencies</span>
-<span class="cmt"># ShadCN UI</span>
-<span class="cc">npx shadcn-ui@latest init</span>
+      const data = Object.fromEntries(new FormData(form).entries());
+      console.log('KMTC Registration:', data);
 
-<span class="cmt"># Database & ORM</span>
-<span class="ch">npm install prisma @prisma/client && npx prisma init</span>
+      toastBox.style.display = 'block';
+      toastBox.style.background = '#06b579';
+      toastBox.innerHTML = '<i class="fa-solid fa-circle-check me-2"></i>Registration received! Telegram access details will be sent to your email/WhatsApp.';
+      form.reset();
+      form.classList.remove('was-validated');
+      setTimeout(() => toastBox.style.display = 'none', 5000);
+    });
 
-<span class="cmt"># Auth</span>
-<span class="cc">npm install next-auth @auth/prisma-adapter bcryptjs</span>
-
-<span class="cmt"># Media & Payments</span>
-<span class="cc">npm install cloudinary next-cloudinary paystack-api</span>
-
-<span class="cmt"># Utilities</span>
-<span class="cc">npm install zod react-hook-form @hookform/resolvers lucide-react date-fns</span>
-    </div>
-
-    <div class="code">
-      <span class="stag">Step 3 — .env.local Variables</span>
-<span class="cmt"># Neon PostgreSQL</span>
-<span class="ch">DATABASE_URL="postgresql://user:<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="23534250506346530e5b5b5b0d4d464c4d0d5746404b">[email&#160;protected]</a>/church_saas?sslmode=require"</span>
-
-<span class="cmt"># NextAuth</span>
-<span class="cc">NEXTAUTH_SECRET="run: openssl rand -base64 32"
-NEXTAUTH_URL="http://localhost:3000"</span>
-
-<span class="cmt"># Cloudinary</span>
-<span class="cc">NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="your-cloud-name"
-CLOUDINARY_API_KEY="your-key"
-CLOUDINARY_API_SECRET="your-secret"</span>
-
-<span class="cmt"># Paystack</span>
-<span class="cok">PAYSTACK_SECRET_KEY="sk_test_xxxxx"
-NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY="pk_test_xxxxx"</span>
-    </div>
-
-    <div class="sec-hd" style="padding-top:20px">
-      <span class="eyebrow">Roadmap</span>
-      <h2>6-Phase <em>Build Plan</em></h2>
-    </div>
-    <div class="rmap">
-      <div class="pcard cur"><div class="pnum">1</div><div class="ptag ptnow">✅ Done</div><h4>Foundation</h4><ul><li>Architecture plan</li><li>UI/UX system</li><li>Project scaffold</li><li>Folder structure</li></ul></div>
-      <div class="pcard"><div class="pnum">2</div><div class="ptag ptnxt">🔜 Next</div><h4>Auth System</h4><ul><li>Prisma DB schema</li><li>Login / Register</li><li>NextAuth setup</li><li>Protected routes</li></ul></div>
-      <div class="pcard"><div class="pnum">3</div><div class="ptag ptpln">📌 Planned</div><h4>Sermon System</h4><ul><li>Cloudinary upload</li><li>Sermon CRUD API</li><li>Video player page</li><li>Public listing</li></ul></div>
-      <div class="pcard"><div class="pnum">4</div><div class="ptag ptpln">📌 Planned</div><h4>Admin Dashboard</h4><ul><li>Full dashboard UI</li><li>Analytics charts</li><li>Event management</li><li>User management</li></ul></div>
-      <div class="pcard"><div class="pnum">5</div><div class="ptag ptpln">📌 Planned</div><h4>Payments + Live</h4><ul><li>Paystack integration</li><li>Donation tracking</li><li>Live stream embed</li><li>Stream controls</li></ul></div>
-      <div class="pcard"><div class="pnum">6</div><div class="ptag ptadv">🚀 SaaS</div><h4>Multi-Tenant</h4><ul><li>Church onboarding</li><li>Subdomain routing</li><li>Billing & plans</li><li>Super admin panel</li></ul></div>
-    </div>
-  </div>
-</div>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-function go(id, btn) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('show'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('on'));
-  document.getElementById('p-' + id).classList.add('show');
-  btn.classList.add('on');
-}
-</script>
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
 </body>
 </html>
