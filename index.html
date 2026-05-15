@@ -619,40 +619,44 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    const form = document.getElementById('registrationForm');
-    const toastBox = document.getElementById('toastBox');
+<script>
+  const SCRIPT_URL = 'PASTE_YOUR_WEB_APP_URL_HERE';
 
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
+form.addEventListener('submit', async function (event) {
+  event.preventDefault();
 
-      if (!form.checkValidity()) {
-        form.classList.add('was-validated');
-        toastBox.style.display = 'block';
-        toastBox.style.background = '#ff5128';
-        toastBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-2"></i>Please fill all required fields correctly.';
-        setTimeout(() => toastBox.style.display = 'none', 3500);
-        return;
-      }
+  if (!form.checkValidity()) {
+    form.classList.add('was-validated');
+    showToast('Please fill all required fields correctly.', '#ff5128');
+    return;
+  }
 
-      const data = Object.fromEntries(new FormData(form).entries());
-      console.log('KMTC Registration:', data);
+  const data = Object.fromEntries(new FormData(form).entries());
 
-      toastBox.style.display = 'block';
-      toastBox.style.background = '#06b579';
-      toastBox.innerHTML = '<i class="fa-solid fa-circle-check me-2"></i>Registration received! Telegram access details will be sent to your email/WhatsApp.';
-      form.reset();
-      form.classList.remove('was-validated');
-      setTimeout(() => toastBox.style.display = 'none', 5000);
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
     });
 
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', function(e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (!target) return;
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
+    showToast('Registration received! Telegram access details will be sent shortly.', '#06b579');
+    form.reset();
+    form.classList.remove('was-validated');
+  } catch (error) {
+    showToast('Something went wrong. Please try again.', '#ff5128');
+  }
+});
+
+function showToast(message, color) {
+  toastBox.style.display = 'block';
+  toastBox.style.background = color;
+  toastBox.innerHTML = message;
+  setTimeout(() => toastBox.style.display = 'none', 5000);
+}
     });
   </script>
 </body>
