@@ -194,6 +194,15 @@
       text-transform: uppercase;
       position: relative;
       z-index: 1;
+      .hero-title {
+     display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    }
+
+.hero-title span {
+  display: block;
+}
     }
     .glitch { animation: textPop .9s ease both; }
     .glitch span { display: inline-block; transition: transform .25s ease, text-shadow .25s ease; }
@@ -497,7 +506,10 @@
       <div class="hero-copy">
         <span class="floating-shape s1"></span><span class="floating-shape s2"></span>
         <span class="eyebrow" data-aos="fade-down">Presents · Webinar 1.0</span>
-        <h1 class="glitch"><span>Technology,</span><br /><span>AI & Work</span></h1>
+        <h1 class="glitch hero-title">
+  <span class="d-block mb-2">Technology,</span>
+  <span class="d-block">AI & Work</span>
+        </h1>
         <div class="topic" data-aos="fade-up" data-aos-delay="250">The Future of Work for Creatives, Kingdom Builders & Digital Professionals.</div>
         <div class="hero-meta" data-aos="fade-up" data-aos-delay="400">
           <span class="meta-chip"><i class="fa-solid fa-calendar-days"></i> Fri. 29th May, 2026</span>
