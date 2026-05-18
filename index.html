@@ -33,6 +33,7 @@
         #f7f4ef;
       overflow-x: hidden;
       cursor: default;
+    }
 
     .cursor-dot, .cursor-ring {
       position: fixed;
@@ -281,6 +282,100 @@
     .agenda-item:hover { transform: translateX(8px); }
     .agenda-icon { width: 44px; height: 44px; flex: 0 0 44px; display: grid; place-items: center; background: var(--kmtc-yellow); color: var(--kmtc-black); border-radius: 50%; animation: iconBob 2s infinite ease-in-out; }
 
+    /* ── FAQ ── */
+    #faq { background: var(--kmtc-black); color: #fff; }
+    #faq .section-title { color: #fff; }
+    #faq .section-lead { color: rgba(255,255,255,.65); }
+    .faq-accordion .accordion-item {
+      background: transparent;
+      border: 0;
+      border-bottom: 2px solid rgba(255,255,255,.12);
+    }
+    .faq-accordion .accordion-item:first-child { border-top: 2px solid rgba(255,255,255,.12); }
+    .faq-accordion .accordion-button {
+      background: transparent;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      padding: 1.3rem 0;
+      box-shadow: none;
+    }
+    .faq-accordion .accordion-button:not(.collapsed) {
+      color: var(--kmtc-yellow);
+      background: transparent;
+    }
+    .faq-accordion .accordion-button::after {
+      filter: invert(1);
+    }
+    .faq-accordion .accordion-button:not(.collapsed)::after {
+      filter: invert(0) sepia(1) saturate(5) hue-rotate(5deg) brightness(1.1);
+    }
+    .faq-accordion .accordion-body {
+      color: rgba(255,255,255,.72);
+      padding: 0 0 1.3rem;
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+    .faq-tag {
+      display: inline-block;
+      padding: .3rem .65rem;
+      background: var(--kmtc-orange);
+      color: #fff;
+      font-weight: 900;
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-right: .5rem;
+      vertical-align: middle;
+    }
+
+    /* ── Floating WhatsApp Button ── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 9998;
+      width: 60px;
+      height: 60px;
+      background: #25d366;
+      border: 3px solid var(--kmtc-black);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 5px 5px 0 var(--kmtc-black);
+      transition: transform .25s ease, box-shadow .25s ease;
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.7rem;
+      animation: waBob 3s ease-in-out infinite;
+    }
+    .whatsapp-float:hover {
+      transform: translate(3px, 3px) scale(1.08);
+      box-shadow: 2px 2px 0 var(--kmtc-black);
+      color: #fff;
+    }
+    .whatsapp-float .wa-tooltip {
+      position: absolute;
+      right: 70px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--kmtc-black);
+      color: #fff;
+      white-space: nowrap;
+      font-size: .78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      padding: .45rem .8rem;
+      box-shadow: 4px 4px 0 #25d366;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease;
+    }
+    .whatsapp-float:hover .wa-tooltip { opacity: 1; }
+
     .toast-box { position: fixed; right: 1rem; bottom: 1rem; z-index: 9999; display: none; max-width: 380px; background: var(--kmtc-green); color: #fff; border: 3px solid var(--kmtc-black); box-shadow: 8px 8px 0 var(--kmtc-black); padding: 1rem; font-weight: 800; animation: toastIn .35s ease both; }
     footer { background: var(--kmtc-black); color: #fff; padding: 2rem 0; }
 
@@ -288,14 +383,12 @@
     .marquee-track { display: flex; width: max-content; animation: marquee 22s linear infinite; }
     .marquee span { display: inline-block; padding: .9rem 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; }
 
+    @keyframes waBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
     @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes pulseMark { from { transform: scale(.95) rotate(-2deg); } to { transform: scale(1.05) rotate(2deg); } }
     @keyframes bgDrift { to { background-position: 420px 420px; } }
     @keyframes stripMove { to { background-position: 200% 0; } }
-    @keyframes logoFloat {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
+    @keyframes logoFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
     @keyframes floatOrb { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(18px) scale(1.04); } }
     @keyframes waveSlide { to { transform: translateX(90px) rotate(-6deg); } }
     @keyframes textPop { from { opacity: 0; transform: translateY(35px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
@@ -312,7 +405,7 @@
     @keyframes marquee { to { transform: translateX(-50%); } }
 
     @media (max-width: 991px) { .hero-grid { grid-template-columns: 1fr; } .hero-art { min-height: 720px; border-left: 0; border-top: 10px solid var(--kmtc-black); } body { cursor: auto; } a, button, input, select, textarea { cursor: auto !important; } .cursor-dot, .cursor-ring { display: none !important; } }
-    @media (max-width: 575px) { .hero-art { grid-template-columns: 1fr; grid-template-rows: repeat(4, 260px); min-height: auto; } .meta-chip { width: 100%; } .speaker-photo { height: 310px; } }
+    @media (max-width: 575px) { .hero-art { grid-template-columns: 1fr; grid-template-rows: repeat(4, 260px); min-height: auto; } .meta-chip { width: 100%; } .speaker-photo { height: 310px; } .whatsapp-float { bottom: 1.2rem; right: 1.2rem; width: 52px; height: 52px; font-size: 1.4rem; } }
   </style>
 </head>
 <body>
@@ -331,6 +424,7 @@
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
           <li class="nav-item"><a class="nav-link" href="#speakers">Speakers</a></li>
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
           <li class="nav-item"><a class="btn btn-kmtc ms-lg-2" href="#register">Register Now</a></li>
         </ul>
       </div>
@@ -409,6 +503,92 @@
       </div>
     </section>
 
+    <!-- ══════════════ FAQ ══════════════ -->
+    <section id="faq">
+      <div class="container">
+        <div class="row g-5 align-items-start">
+          <div class="col-lg-4" data-aos="fade-right">
+            <span class="eyebrow bg-yellow-400" style="background: var(--kmtc-yellow); color: var(--kmtc-black);">FAQ</span>
+            <h2 class="section-title mt-4">Got questions?</h2>
+            <p class="section-lead">Everything you need to know before you register. Still not sure? Reach us on WhatsApp or any of our social channels.</p>
+            <a href="#register" class="btn btn-kmtc mt-3">Register Now</a>
+          </div>
+          <div class="col-lg-8" data-aos="fade-left" data-aos-delay="150">
+            <div class="accordion faq-accordion" id="faqAccordion">
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                    <span class="faq-tag">Free</span> Is the webinar free to attend?
+                  </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">Yes — 100% free. Registration simply secures your spot and ensures you receive the Telegram access link before the session starts.</div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                    <span class="faq-tag">Access</span> How do I join the live session?
+                  </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">After you register, a Telegram channel/group link will be sent to your email and WhatsApp number. Join the channel before 8:00 PM on Friday 29th May 2026 to participate live.</div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                    <span class="faq-tag">Who</span> Who should attend this webinar?
+                  </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">This webinar is for creatives, designers, media professionals, students, entrepreneurs, and church/ministry media teams — anyone curious about how AI and technology are reshaping the future of work and digital influence.</div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                    <span class="faq-tag">Tech</span> Do I need any prior tech knowledge?
+                  </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">No. The session is designed to be accessible regardless of your technical background. Whether you're just discovering AI tools or already working in tech, there will be valuable takeaways for you.</div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                    <span class="faq-tag">Recording</span> Will the session be recorded?
+                  </button>
+                </h2>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">We recommend attending live to engage with the speakers directly. Any recording availability will be communicated to registered participants via the Telegram channel after the event.</div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                    <span class="faq-tag">Time</span> What time does it start and how long will it run?
+                  </button>
+                </h2>
+                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">The webinar begins at 8:00 PM (WAT) on Friday 29th May 2026 and is expected to run for approximately 90 minutes, including a Q&A segment.</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ══════════════ / FAQ ══════════════ -->
+
     <section id="register">
       <div class="container">
         <div class="register-panel" data-aos="flip-up">
@@ -444,9 +624,15 @@
     </section>
   </main>
 
-  <footer><div class="container d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3"><div><strong class="text-uppercase">KMTC Webinar 1.0</strong><br />Technology, AI & The Future of Work</div><div class="d-flex gap-3 fs-4"><a class="text-white" href="https://www.facebook.com/profile.php?id=61588271379394
-"><i class="fa-brands fa-facebook"></i></a><a class="text-white" href="https://www.instagram.com/kmtc_official?igsh=MWY1NXdtd2wydTlueA=="><i class="fa-brands fa-instagram"></i></a><a class="text-white" href="https://vm.tiktok.com/ZS9FHJbjgXwGW-TPOLW/"><i class="fa-brands fa-x-tiktok"></i></a></div></div></footer>
+  <footer><div class="container d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3"><div><strong class="text-uppercase">KMTC Webinar 1.0</strong><br />Technology, AI & The Future of Work</div><div class="d-flex gap-3 fs-4"><a class="text-white" href="https://www.facebook.com/profile.php?id=61588271379394"><i class="fa-brands fa-facebook"></i></a><a class="text-white" href="https://www.instagram.com/kmtc_official?igsh=MWY1NXdtd2wydTlueA=="><i class="fa-brands fa-instagram"></i></a><a class="text-white" href="https://vm.tiktok.com/ZS9FHJbjgXwGW-TPOLW/"><i class="fa-brands fa-tiktok"></i></a></div></div></footer>
   <div class="toast-box" id="toastBox"><i class="fa-solid fa-circle-check me-2"></i> Registration received! Telegram access details will be sent to your email/WhatsApp.</div>
+
+  <!-- ── Floating WhatsApp Button ── -->
+  <!-- Replace the number below (234XXXXXXXXXX) with your actual WhatsApp number -->
+  <a href="https://wa.me/2348035284541?text=Hi%20KMTC%2C%20I%20have%20a%20question%20about%20Webinar%201.0" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="wa-tooltip">Chat with us on WhatsApp</span>
+  </a>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -502,11 +688,11 @@
       }
       const data = Object.fromEntries(new FormData(form).entries());
       try {
-    await fetch(SCRIPT_URL, {
+        await fetch(SCRIPT_URL, {
           method: 'POST',
           mode: 'no-cors',
-          body: JSON.stringify(data)   // no headers — defaults to text/plain, GAS still reads it fine
-         });
+          body: JSON.stringify(data)
+        });
         showToast('<i class="fa-solid fa-circle-check me-2"></i>Registration received! Telegram access details will be sent shortly.', '#06b579');
         form.reset();
         form.classList.remove('was-validated');
@@ -524,5 +710,3 @@
   </script>
 </body>
 </html>
-
- 
