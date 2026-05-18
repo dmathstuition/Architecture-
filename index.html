@@ -404,8 +404,73 @@
     @keyframes toastIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes marquee { to { transform: translateX(-50%); } }
 
-    @media (max-width: 991px) { .hero-grid { grid-template-columns: 1fr; } .hero-art { min-height: 720px; border-left: 0; border-top: 10px solid var(--kmtc-black); } body { cursor: auto; } a, button, input, select, textarea { cursor: auto !important; } .cursor-dot, .cursor-ring { display: none !important; } }
-    @media (max-width: 575px) { .hero-art { grid-template-columns: 1fr; grid-template-rows: repeat(4, 260px); min-height: auto; } .meta-chip { width: 100%; } .speaker-photo { height: 310px; } .whatsapp-float { bottom: 1.2rem; right: 1.2rem; width: 52px; height: 52px; font-size: 1.4rem; } }
+    /* ── TABLET (≤ 991px) ── */
+    @media (max-width: 991px) {
+      body { cursor: auto; }
+      a, button, input, select, textarea { cursor: auto !important; }
+      .cursor-dot, .cursor-ring { display: none !important; }
+
+      .original-logo { width: 100px; }
+      .hero { min-height: auto; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-copy { padding: 3rem 1.5rem; min-height: 55vh; }
+      .hero-art { min-height: 480px; border-left: 0; border-top: 10px solid var(--kmtc-black); }
+
+      h1 { font-size: clamp(3rem, 10vw, 7rem); }
+      .topic { font-size: clamp(1.4rem, 4.5vw, 3rem); }
+
+      .register-panel { box-shadow: 8px 8px 0 var(--kmtc-orange); }
+      .speaker-card { box-shadow: 6px 6px 0 var(--kmtc-black); }
+    }
+
+    /* ── PHONE (≤ 575px) ── */
+    @media (max-width: 575px) {
+      .original-logo { width: 80px; }
+      .navbar-brand span { font-size: .82rem; }
+
+      .hero-copy { padding: 2.2rem 1.2rem; }
+      h1 { font-size: clamp(2.6rem, 9.5vw, 3.8rem); }
+      .topic { font-size: clamp(1.1rem, 5vw, 1.6rem); }
+      .eyebrow { font-size: .95rem; letter-spacing: .1em; max-width: 100%; }
+
+      .section-title { font-size: clamp(1.9rem, 8vw, 3rem); }
+      section { padding: 3rem 0; }
+
+      .hero-art { grid-template-columns: 1fr; grid-template-rows: repeat(4, 200px); min-height: auto; }
+      .tile { min-height: 200px; }
+
+      .meta-chip { width: 100%; }
+
+      .hero-copy .d-flex.flex-wrap { flex-direction: column; }
+      .hero-copy .d-flex.flex-wrap a { width: 100%; text-align: center; }
+
+      .speaker-photo { height: 260px; }
+      .speaker-card { box-shadow: 5px 5px 0 var(--kmtc-black); }
+      .speaker-body h3 { font-size: 1.6rem; }
+
+      .register-panel { box-shadow: 5px 5px 0 var(--kmtc-orange); border-width: 4px; }
+
+      .faq-accordion .accordion-button { font-size: .88rem; padding: 1rem 0; }
+      .faq-tag { display: none; }
+
+      .toast-box { left: 1rem; right: 1rem; bottom: 5rem; max-width: 100%; }
+
+      .whatsapp-float { bottom: 1.2rem; right: 1.2rem; width: 52px; height: 52px; font-size: 1.4rem; }
+      .whatsapp-float .wa-tooltip { display: none; }
+
+      .floating-shape.s2 { display: none; }
+    }
+
+    /* ── VERY SMALL (≤ 380px) ── */
+    @media (max-width: 380px) {
+      .original-logo { width: 65px; }
+      .navbar-brand span { font-size: .75rem; }
+      h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
+      .topic { font-size: 1.05rem; }
+      .section-title { font-size: clamp(1.7rem, 8vw, 2.5rem); }
+      .speaker-body h3 { font-size: 1.4rem; }
+      .meta-chip { font-size: .82rem; padding: .65rem .85rem; }
+    }
   </style>
 </head>
 <body>
@@ -629,7 +694,7 @@
 
   <!-- ── Floating WhatsApp Button ── -->
   <!-- Replace the number below (234XXXXXXXXXX) with your actual WhatsApp number -->
-  <a href="https://wa.me/2348035284541?text=Hi%20KMTC%2C%20I%20have%20a%20question%20about%20Webinar%201.0" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <a href="https://wa.me/234XXXXXXXXXX?text=Hi%20KMTC%2C%20I%20have%20a%20question%20about%20Webinar%201.0" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
     <i class="fa-brands fa-whatsapp"></i>
     <span class="wa-tooltip">Chat with us on WhatsApp</span>
   </a>
